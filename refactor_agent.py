@@ -1,188 +1,225 @@
 import os
 import glob
-from langchain_groq import ChatGroq
-from langchain.tools import tool
-from langchain_groq import ChatGroq
-from langchain.tools import tool
-from langchain_core.prompts import ChatPromptTemplate
-from langgraph.prebuilt import create_react_agent
-from langchain_core.prompts import ChatPromptTemplate
+import re
+import time
+from dotenv import load_dotenv
+from langchain_anthropic import ChatAnthropic
 
 # ─────────────────────────────────────────────
-# CONFIG — paste your Groq API key here
+# CONFIG
 # ─────────────────────────────────────────────
-GROQ_API_KEY = "INSERT KEY HERE"
-PROJECT_FOLDER = "./rq3_workdir/BudgetTracker_DefaultOrganization_20250909155642/turn_06_src"  # path to the folder you want to refactor
+load_dotenv()
+
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+RQ3_WORKDIR       = "./rq3_workdir"
+OUTPUT_DIR        = "./refactored_code"
+
+if not ANTHROPIC_API_KEY:
+    raise ValueError("ANTHROPIC_API_KEY not found in .env file.")
 # ─────────────────────────────────────────────
 
 
 # ── LLM Setup ────────────────────────────────
-llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    api_key=GROQ_API_KEY,
+llm = ChatAnthropic(
+    model="claude-haiku-4-5",    # cheapest + fastest, still great for refactoring
+    api_key=ANTHROPIC_API_KEY,
     temperature=0,
+    max_tokens=4096,
 )
 
 
-# ── Tools ─────────────────────────────────────
+# ─────────────────────────────────────────────
+# RATE LIMIT HELPER
+# ─────────────────────────────────────────────
 
-@tool
-def list_python_files(folder: str) -> str:
-    """Lists all Python files in the given project folder recursively."""
-    files = glob.glob(os.path.join(folder, "**/*.py"), recursive=True)
-    if not files:
-        return f"No Python files found in '{folder}'."
-    return "\n".join(files)
+def parse_wait_seconds(error_message: str) -> int:
+    hours   = re.search(r'(\d+)h',      error_message)
+    minutes = re.search(r'(\d+)m(?!s)', error_message)
+    seconds = re.search(r'([\d.]+)s',   error_message)
+    millis  = re.search(r'(\d+)ms',     error_message)
 
+    total = 0
+    if hours:   total += int(hours.group(1)) * 3600
+    if minutes: total += int(minutes.group(1)) * 60
+    if seconds: total += float(seconds.group(1))
+    if millis and not seconds: total += int(millis.group(1)) / 1000
 
-@tool
-def read_file(filepath: str) -> str:
-    """Reads and returns the content of a Python file."""
-    if not os.path.exists(filepath):
-        return f"File not found: {filepath}"
-    with open(filepath, "r") as f:
-        return f.read()
-
-
-@tool
-def detect_code_smells(code: str) -> str:
-    """
-    Analyzes Python code and returns a list of detected code smells
-    such as long functions, duplicate logic, magic numbers, missing error
-    handling, overly complex conditionals, and unused variables.
-    """
-    smells = []
-    lines = code.split("\n")
-
-    # Long functions (more than 40 lines)
-    in_function = False
-    func_start = 0
-    func_name = ""
-    for i, line in enumerate(lines):
-        stripped = line.strip()
-        if stripped.startswith("def "):
-            if in_function and (i - func_start) > 40:
-                smells.append(
-                    f"⚠️  Long function '{func_name}' "
-                    f"({i - func_start} lines) starting at line {func_start + 1}"
-                )
-            in_function = True
-            func_start = i
-            func_name = stripped.split("(")[0].replace("def ", "")
-
-    # Magic numbers
-    import re
-    magic_numbers = re.findall(r'\b(?<!\.)\d{2,}\b', code)
-    if magic_numbers:
-        unique = list(set(magic_numbers))[:5]
-        smells.append(f"⚠️  Possible magic numbers found: {unique}")
-
-    # Missing docstrings
-    func_lines = [l for l in lines if l.strip().startswith("def ")]
-    for fl in func_lines:
-        idx = lines.index(fl)
-        next_line = lines[idx + 1].strip() if idx + 1 < len(lines) else ""
-        if not next_line.startswith('"""') and not next_line.startswith("'''"):
-            fname = fl.strip().split("(")[0].replace("def ", "")
-            smells.append(f"⚠️  Function '{fname}' is missing a docstring")
-
-    # Bare excepts
-    if "except:" in code:
-        smells.append("⚠️  Bare 'except:' clause found — too broad, catches everything including SystemExit")
-
-    # Print statements (should use logging in production)
-    print_count = code.count("print(")
-    if print_count > 3:
-        smells.append(f"⚠️  {print_count} print() statements found — consider using logging instead")
-
-    if not smells:
-        return "✅ No obvious code smells detected."
-    return "\n".join(smells)
+    return max(int(total) + 10, 30) if total > 0 else 30
 
 
-@tool
-def refactor_and_add_docs(filepath: str) -> str:
-    """
-    Reads a Python file, then uses the LLM to rewrite it with:
-    - Refactored functions (cleaner, shorter, DRY)
-    - Docstrings added to all functions and classes
-    - Inline comments for complex logic
-    Returns the refactored code as a string.
-    """
-    if not os.path.exists(filepath):
-        return f"File not found: {filepath}"
-
-    with open(filepath, "r") as f:
-        original_code = f.read()
-
-    refactor_prompt = f"""You are an expert Python developer specializing in code quality.
+def refactor_with_retry(code: str, max_retries: int = 5) -> str:
+    """Call Claude directly — no agent, no tools, just one LLM call per file."""
+    prompt = f"""You are an expert Python developer specializing in code quality.
 
 Refactor the following Python code to:
-1. Reduce technical debt
-2. Apply DRY (Don't Repeat Yourself) principles
-3. Break down long functions into smaller focused ones
-4. Add clear docstrings to every function and class
-5. Add inline comments for any complex or non-obvious logic
-6. Replace magic numbers with named constants
-7. Use proper exception handling instead of bare excepts
-8. Replace print() with logging where appropriate
+1. Apply DRY — eliminate duplicate logic
+2. Break down long functions (>40 lines) into smaller focused ones
+3. Add clear docstrings to every function and class
+4. Add inline comments for complex logic
+5. Replace magic numbers with named constants at the top of the file
+6. Replace bare except clauses with specific exception types
+7. Replace print() with proper logging
+8. Improve variable naming where unclear
 
-Return ONLY the refactored Python code. No explanations, no markdown, just clean Python.
+IMPORTANT: Return ONLY the refactored Python code. No explanations, no markdown fences, no preamble. Just valid Python.
 
 Original code:
-{original_code}
+{code}
 """
+    for attempt in range(max_retries):
+        try:
+            response = llm.invoke(prompt)
+            return response.content
+        except Exception as e:
+            err = str(e)
+            if "429" in err or "rate_limit" in err.lower() or "overloaded" in err.lower():
+                wait = parse_wait_seconds(err)
+                print(f"   ⏳ Rate limit, waiting {wait}s (attempt {attempt+1}/{max_retries})...")
+                for remaining in range(wait, 0, -10):
+                    print(f"   ⏰ Resuming in {remaining}s...", end="\r")
+                    time.sleep(min(10, remaining))
+                print("   ✅ Resuming.                    ")
+            else:
+                raise e
+    return None
 
-    response = llm.invoke(refactor_prompt)
-    return response.content
+
+# ─────────────────────────────────────────────
+# HELPERS
+# ─────────────────────────────────────────────
+
+def get_all_projects(workdir: str) -> list[str]:
+    return [
+        os.path.join(workdir, d)
+        for d in sorted(os.listdir(workdir))
+        if os.path.isdir(os.path.join(workdir, d))
+    ]
 
 
-@tool
-def save_refactored_file(filepath: str, refactored_code: str) -> str:
+def get_last_turn_folder(project_path: str) -> str | None:
+    turn_folders = [
+        d for d in os.listdir(project_path)
+        if os.path.isdir(os.path.join(project_path, d))
+        and d.startswith("turn_")
+        and d.endswith("_src")
+    ]
+    if not turn_folders:
+        return None
+    turn_folders.sort(key=lambda x: int(x.split("_")[1]))
+    return os.path.join(project_path, turn_folders[-1])
+
+
+def already_refactored(project_name: str, output_dir: str) -> bool:
+    """Only skip if output folder exists AND has actual .py files in it."""
+    project_out = os.path.join(output_dir, project_name)
+    if not os.path.isdir(project_out):
+        return False
+    py_files = glob.glob(os.path.join(project_out, "**/*.py"), recursive=True)
+    return len(py_files) > 0
+
+
+def get_relative_output_path(source_root: str, filepath: str, output_dir: str) -> str:
     """
-    Saves the refactored code to a new file with '_refactored' added to the filename.
-    For example: my_module.py → my_module_refactored.py
+    Maps source file to output path preserving relative structure.
+    e.g. ./rq3_workdir/Game/turn_04_src/utils/helpers.py
+      -> ./refactored_code/Game/utils/helpers.py
     """
-    base, ext = os.path.splitext(filepath)
-    new_path = f"{base}_refactored{ext}"
-    with open(new_path, "w") as f:
-        f.write(refactored_code)
-    return f"✅ Saved refactored file to: {new_path}"
+    rel = os.path.relpath(filepath, source_root)
+    return os.path.join(output_dir, rel)
 
 
-tools = [list_python_files, read_file, detect_code_smells, refactor_and_add_docs, save_refactored_file]
+# ─────────────────────────────────────────────
+# MAIN RUNNER — pure Python loop, no agent
+# ─────────────────────────────────────────────
 
-
-# ── Prompt ────────────────────────────────────
-prompt = ChatPromptTemplate.from_messages([
-    ("system", """You are a senior Python engineer specializing in code quality and technical debt reduction.
-
-Your job is to refactor a Python project folder. Follow these steps for EACH file:
-1. Use list_python_files to find all .py files in the project folder
-2. For each file:
-   a. Use read_file to read its contents
-   b. Use detect_code_smells to identify issues
-   c. Use refactor_and_add_docs to generate a clean refactored version
-   d. Use save_refactored_file to save the result
-3. After processing all files, give a summary of:
-   - How many files were processed
-   - The main issues found across the project
-   - What was improved
-
-Be thorough. Process every single file you find."""),
-    ("human", "{input}"),
-    ("placeholder", "{agent_scratchpad}"),
-])
-
-# ── Agent ─────────────────────────────────────
-agent_executor = create_react_agent(llm, tools)
-
-# ── Run ───────────────────────────────────────
 if __name__ == "__main__":
-    print("\n🤖 Refactoring Agent Starting...\n")
-    result = agent_executor.invoke({
-        "messages": [("human", f"Please scan and refactor all Python files in the folder: {PROJECT_FOLDER}")]
-    })
-    print("\n─────────────────────────────────")
-    print("📋 FINAL SUMMARY:")
-    print(result["messages"][-1].content)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    projects  = get_all_projects(RQ3_WORKDIR)
+    print(f"\n🔍 Found {len(projects)} projects in {RQ3_WORKDIR}\n")
+
+    skipped   = []
+    processed = []
+
+    for project_path in projects:
+        project_name = os.path.basename(project_path)
+
+        # ── Skip if already done ──
+        if already_refactored(project_name, OUTPUT_DIR):
+            print(f"⏭️  Skipping '{project_name}' — already refactored.")
+            skipped.append(project_name)
+            continue
+
+        # ── Find last turn ──
+        last_turn = get_last_turn_folder(project_path)
+        if not last_turn:
+            print(f"⚠️  No turn_XX_src in '{project_name}' — skipping.")
+            skipped.append(project_name)
+            continue
+
+        # ── Find all .py files ──
+        py_files = glob.glob(os.path.join(last_turn, "**/*.py"), recursive=True)
+        py_files = [f for f in py_files if os.path.isfile(f)]
+
+        if not py_files:
+            print(f"⚠️  No .py files in '{project_name}' last turn — skipping.")
+            skipped.append(project_name)
+            continue
+
+        output_project_dir = os.path.join(OUTPUT_DIR, project_name)
+        turn_name = os.path.basename(last_turn)
+
+        print(f"\n🤖 {project_name}")
+        print(f"   Turn   : {turn_name}")
+        print(f"   Files  : {len(py_files)}")
+
+        project_ok = True
+
+        for filepath in py_files:
+            filename = os.path.relpath(filepath, last_turn)
+            print(f"   📄 {filename} ... ", end="", flush=True)
+
+            # Read
+            with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+                original_code = f.read()
+
+            if not original_code.strip():
+                print("empty, skipped.")
+                continue
+
+            # Refactor (1 LLM call per file)
+            refactored = refactor_with_retry(original_code)
+
+            if refactored is None:
+                print("❌ failed after retries.")
+                project_ok = False
+                break
+
+            # Save
+            dest = get_relative_output_path(last_turn, filepath, output_project_dir)
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            with open(dest, "w", encoding="utf-8") as f:
+                f.write(refactored)
+
+            print("✅")
+
+        if project_ok:
+            processed.append(project_name)
+        else:
+            # Clean up incomplete output so it reruns next time
+            import shutil
+            out = os.path.join(OUTPUT_DIR, project_name)
+            if os.path.isdir(out):
+                shutil.rmtree(out)
+                print(f"   🧹 Cleaned up incomplete output for '{project_name}'")
+            skipped.append(project_name)
+
+    # ── Final summary ──
+    print("\n" + "═" * 50)
+    print("✅ ALL DONE")
+    print(f"   Processed : {len(processed)} projects")
+    print(f"   Skipped   : {len(skipped)} projects")
+    if skipped:
+        print(f"   Skipped   : {skipped}")
+    print(f"\n📁 Output: {os.path.abspath(OUTPUT_DIR)}")
+    print("═" * 50)

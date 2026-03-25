@@ -1,0 +1,61 @@
+{
+  "project": "2048_DefaultOrganization_20250908205825",
+  "turn_refactored": "turn_04_src",
+  "generated_at": "2026-03-25T14:24:09.251321",
+  "summary": {
+    "total_files_processed": 3,
+    "total_smells_found": 7,
+    "clean_files": 0,
+    "smell_type_breakdown": {
+      "long_function": 1,
+      "magic_numbers": 3,
+      "missing_docstrings": 3
+    }
+  },
+  "agent_summary": "All 3 files have been successfully processed and saved. Here's the complete summary:\n\n---\n\n## \u2705 Refactoring Summary\n\n### \ud83d\udcc1 Files Processed: 3 / 3\n\n| File | Status | Output Path |\n|------|--------|-------------|\n| `game.py` | \u2705 Saved | `./refactored_code/2048_DefaultOrganization_20250908205825/game.py` |\n| `app.py` | \u2705 Saved | `./refactored_code/2048_DefaultOrganization_20250908205825/app.py` |\n| `main.py` | \u2705 Saved | `./refactored_code/2048_DefaultOrganization_20250908205825/main.py` |\n\n---\n\n### \ud83d\udd0d Code Smells Detected\n\n| File | Smells Found |\n|------|-------------|\n| `game.py` | Long function (`apply_to_line`, 42 lines), magic numbers (`10`, `90`, `2048`), missing docstrings (`__init__`, `apply_to_line`) |\n| `app.py` | Magic numbers (`400`, `5000`, `2048`), missing docstrings (`index`, `init_game`, `state`, `move`) |\n| `main.py` | Magic numbers (`400`, `5000`, `2048`), missing docstrings (`index`, `init_game`, `state`, `move`) |\n\n---\n\n### \ud83d\udee0\ufe0f Improvements Made\n\n#### `game.py`\n- **Named constants** introduced: `DEFAULT_BOARD_SIZE`, `TILE_VALUE_TWO`, `TILE_VALUE_FOUR`, `TILE_FOUR_PROBABILITY`, `VALID_DIRECTIONS`, `HORIZONTAL_DIRECTIONS`, `REVERSE_DIRECTIONS` \u2014 eliminating all magic numbers\n- **Long `move()` method decomposed** into focused private helpers: `_apply_move_to_rows()`, `_apply_move_to_columns()`\n- **`move_line()` decomposed** into `_compress_line()`, `_merge_line()`, `_pad_line()` \u2014 each with a single responsibility\n- **`can_move()` decomposed** into `_has_empty_cell()`, `_has_horizontal_merge()`, `_has_vertical_merge()`\n- **`__init__` split** into `_init_fresh_game()` and `_restore_game()` for clarity\n- **Full docstrings** added to all methods including `__init__`\n- **`logging`** added throughout (replacing implicit silent failures)\n- **Bare `except`** replaced with specific `(KeyError, ValueError, TypeError)` in `app.py`/`main.py`\n\n#### `app.py` & `main.py`\n- **Named constants** for all magic numbers: `DEFAULT_SECRET_KEY`, `SERVER_HOST`, `SERVER_PORT`, `SESSION_GAME_STATE_KEY`, `VALID_DIRECTIONS` (as `frozenset`)\n- **`logging.basicConfig`** configured; all `print`-style debug info replaced with `logger.info/warning`\n- **Bare `except Exception`** replaced with specific `(KeyError, ValueError, TypeError)`\n- **Route logic decomposed**: `_handle_game_over()` and `_handle_valid_move()` extracted from the `move()` route\n- **`build_state_payload()` helper** extracted to eliminate repeated dict-building across `init_game`, `state`, and `move` routes (DRY principle)\n- **Full docstrings** added to all route handlers and helper functions",
+  "files": {
+    "./rq3_workdir/2048_DefaultOrganization_20250908205825/turn_04_src/game.py": {
+      "smell_count": 3,
+      "smells": [
+        {
+          "type": "long_function",
+          "detail": "Function 'apply_to_line' is 42 lines (starts at line 61)"
+        },
+        {
+          "type": "magic_numbers",
+          "detail": "Possible magic numbers: ['10', '90', '2048']"
+        },
+        {
+          "type": "missing_docstrings",
+          "detail": "Missing docstrings: ['__init__', 'apply_to_line']"
+        }
+      ]
+    },
+    "./rq3_workdir/2048_DefaultOrganization_20250908205825/turn_04_src/app.py": {
+      "smell_count": 2,
+      "smells": [
+        {
+          "type": "magic_numbers",
+          "detail": "Possible magic numbers: ['400', '5000', '2048']"
+        },
+        {
+          "type": "missing_docstrings",
+          "detail": "Missing docstrings: ['index', 'init_game', 'state', 'move']"
+        }
+      ]
+    },
+    "./rq3_workdir/2048_DefaultOrganization_20250908205825/turn_04_src/main.py": {
+      "smell_count": 2,
+      "smells": [
+        {
+          "type": "magic_numbers",
+          "detail": "Possible magic numbers: ['400', '5000', '2048']"
+        },
+        {
+          "type": "missing_docstrings",
+          "detail": "Missing docstrings: ['index', 'init_game', 'state', 'move']"
+        }
+      ]
+    }
+  }
+}
