@@ -62,3 +62,9 @@ output/
 
 .env
 
+./DPy/
+
+DPy/output/
+
+rq3_results.csv
+rq3_results_smells_detail.csv

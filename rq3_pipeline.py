@@ -1,20 +1,20 @@
 """
-RQ3 Pipeline v3: Per-Turn Smell Analysis + Refactored Code Comparison
-=======================================================================
-Now runs BOTH PyExamine and DPy on every snapshot (per-turn + refactored).
+RQ3 Pipeline v4: Per-Turn Smell Analysis + Multi-Version Refactored Comparison
+===============================================================================
+Runs BOTH PyExamine and DPy on every snapshot (per-turn + refactored v1/v2/v3).
 
 Prereqs:
   - Run with the python_smells_detector venv ACTIVE
   - Place pkls/ folder alongside this script (or pass --pkl_dir)
   - Pass --config pointing at code_quality_config.yaml
   - Pass --dpy_dir pointing at the DPy/ folder (contains the ./DPy binary)
-  - Optionally place refactored code under --refactored_dir/project_name/
+  - Optionally pass --refactored_dirs (up to 3 dirs, space-separated)
 
 Caching behaviour:
   - PyExamine: if turn_XX_report.csv already exists → skipped
   - DPy:       if <project>_implementation_smells.json already exists in the
                per-turn dpy output dir → skipped
-  - Same rules apply for the refactored snapshot.
+  - Same rules apply for each refactored version snapshot.
 
 Usage:
     python rq3_pipeline.py \\
@@ -23,45 +23,40 @@ Usage:
         --dpy_dir        ./DPy \\
         --output         rq3_results.csv \\
         --work_dir       rq3_workdir \\
-        --refactored_dir ./refactored_code
+        --refactored_dirs ./refactored_code ./refactored_code_v2 ./refactored_code_v3
 
 Output files:
   rq3_results.csv
-      One row per turn.  Columns:
-        project, turn_index, phase, role, interlocutor, timestamp,
-        py_files, code_lines,
-        -- PyExamine --
-        structural_smells, code_smells, architectural_smells, total_smells,
-        -- DPy --
-        dpy_implementation_smells, dpy_design_smells,
-        dpy_architecture_smells, dpy_total_smells,
-        -- token / cost --
-        tokens_prompt, tokens_completion, tokens_reasoning,
-        tokens_total, cost_usd,
-        -- Refactored: PyExamine --
-        refactored_py_files,
-        refactored_structural_smells, refactored_code_smells,
-        refactored_architectural_smells, refactored_total_smells,
-        delta_ref_vs_baseline_structural, delta_ref_vs_baseline_code,
-        delta_ref_vs_baseline_architectural, delta_ref_vs_baseline_total,
-        delta_ref_vs_postreview_structural, delta_ref_vs_postreview_code,
-        delta_ref_vs_postreview_architectural, delta_ref_vs_postreview_total,
-        -- Refactored: DPy --
-        refactored_dpy_implementation_smells, refactored_dpy_design_smells,
-        refactored_dpy_architecture_smells, refactored_dpy_total_smells,
-        delta_ref_vs_baseline_dpy_implementation,
-        delta_ref_vs_baseline_dpy_design,
-        delta_ref_vs_baseline_dpy_architecture,
-        delta_ref_vs_baseline_dpy_total,
-        delta_ref_vs_postreview_dpy_implementation,
-        delta_ref_vs_postreview_dpy_design,
-        delta_ref_vs_postreview_dpy_architecture,
-        delta_ref_vs_postreview_dpy_total
+      One row per turn. Per-turn columns are the same as before.
+      Refactored columns are emitted once per version, prefixed v1_/v2_/v3_:
+
+        -- Refactored vN: PyExamine --
+        vN_refactored_py_files,
+        vN_refactored_structural_smells, vN_refactored_code_smells,
+        vN_refactored_architectural_smells, vN_refactored_total_smells,
+        vN_delta_ref_vs_baseline_structural, vN_delta_ref_vs_baseline_code,
+        vN_delta_ref_vs_baseline_architectural, vN_delta_ref_vs_baseline_total,
+        vN_delta_ref_vs_postreview_structural, vN_delta_ref_vs_postreview_code,
+        vN_delta_ref_vs_postreview_architectural, vN_delta_ref_vs_postreview_total,
+
+        -- Refactored vN: DPy --
+        vN_refactored_dpy_implementation_smells, vN_refactored_dpy_design_smells,
+        vN_refactored_dpy_architecture_smells, vN_refactored_dpy_total_smells,
+        vN_delta_ref_vs_baseline_dpy_implementation,
+        vN_delta_ref_vs_baseline_dpy_design,
+        vN_delta_ref_vs_baseline_dpy_architecture,
+        vN_delta_ref_vs_baseline_dpy_total,
+        vN_delta_ref_vs_postreview_dpy_implementation,
+        vN_delta_ref_vs_postreview_dpy_design,
+        vN_delta_ref_vs_postreview_dpy_architecture,
+        vN_delta_ref_vs_postreview_dpy_total
 
   rq3_results_smells_detail.csv
       One row per smell instance.
-      Extra column:  tool  ("pyexamine" | "dpy")
-      snapshot column values: "turn_N" (per-turn), "refactored"
+      Columns: tool, type, name, description, file, module_class,
+               line_number, severity.
+      snapshot column values: "turn_N", "refactored_v1", "refactored_v2",
+                               "refactored_v3"
 """
 
 import os
@@ -235,7 +230,6 @@ def _empty_pyexamine_counts() -> dict:
 # SECTION 2 — DPy invocation + JSON parsing
 # ============================================================
 
-# Maps the JSON filename suffix → canonical smell category key
 DPY_SMELL_FILES = {
     "implementation": "_implementation_smells.json",
     "design":         "_design_smells.json",
@@ -250,18 +244,12 @@ def run_dpy(
 ) -> tuple[dict, list[dict]]:
     """
     Run DPy on src_dir, writing JSON outputs to dpy_output_dir.
-
-    The project name DPy uses is the basename of src_dir — this determines
-    the output filenames (e.g. turn_00_src_implementation_smells.json).
-
     Returns (counts_dict, smell_rows).
     Caches: if the implementation smells JSON already exists, skip re-running.
     """
     project_name = Path(src_dir).name
     os.makedirs(dpy_output_dir, exist_ok=True)
 
-    # ── Cache check: implementation smells JSON is always produced (even when
-    #    empty), so we use it as the sentinel ─────────────────────────────────
     sentinel = os.path.join(
         dpy_output_dir, f"{project_name}_implementation_smells.json"
     )
@@ -269,9 +257,6 @@ def run_dpy(
         print(f"    [dpy cached] {project_name}")
         return _parse_dpy_outputs(dpy_output_dir, project_name)
 
-    # ── Run DPy ──────────────────────────────────────────────────────────────
-    # Must cd into the DPy/ folder and run ./DPy from there.
-    # cwd must be an absolute path; the executable is ./DPy relative to cwd.
     abs_dpy_bin_dir = os.path.abspath(dpy_bin_dir)
     cmd = [
         "./DPy", "analyze",
@@ -279,10 +264,10 @@ def run_dpy(
         "-o", os.path.abspath(dpy_output_dir),
     ]
     try:
-        result = subprocess.run(
+        subprocess.run(
             cmd,
             check=True,
-            cwd=abs_dpy_bin_dir,      # cd into DPy/ before running
+            cwd=abs_dpy_bin_dir,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.PIPE,
         )
@@ -291,24 +276,19 @@ def run_dpy(
               f"    {e.stderr.decode(errors='replace').strip()}")
         return _empty_dpy_counts(), []
     except FileNotFoundError:
-        print(f"    ERROR: DPy binary not found at {dpy_executable}")
+        print(f"    ERROR: DPy binary not found in {abs_dpy_bin_dir}")
         sys.exit(1)
 
     return _parse_dpy_outputs(dpy_output_dir, project_name)
 
 
 def _parse_dpy_outputs(dpy_output_dir: str, project_name: str) -> tuple[dict, list[dict]]:
-    """
-    Read all DPy JSON smell files for project_name from dpy_output_dir.
-    Returns (counts_dict, smell_rows).
-    """
-    counts    = _empty_dpy_counts()
+    counts     = _empty_dpy_counts()
     smell_rows = []
 
     for category, suffix in DPY_SMELL_FILES.items():
         json_path = os.path.join(dpy_output_dir, f"{project_name}{suffix}")
         if not os.path.isfile(json_path):
-            # Architecture (and ML) files are simply absent when nothing found
             continue
         try:
             with open(json_path, "r", encoding="utf-8", errors="replace") as f:
@@ -320,8 +300,7 @@ def _parse_dpy_outputs(dpy_output_dir: str, project_name: str) -> tuple[dict, li
         if not isinstance(entries, list):
             continue
 
-        count_key = f"dpy_{category}_smells"
-        counts[count_key] = len(entries)
+        counts[f"dpy_{category}_smells"] = len(entries)
 
         for entry in entries:
             smell_rows.append({
@@ -334,7 +313,7 @@ def _parse_dpy_outputs(dpy_output_dir: str, project_name: str) -> tuple[dict, li
                 "line_number":  _safe_int(
                                     str(entry.get("Line no", "")).split("-")[0].strip()
                                 ),
-                "severity":     "",   # DPy does not emit severity
+                "severity":     "",
             })
 
     counts["dpy_total_smells"] = (
@@ -346,7 +325,6 @@ def _parse_dpy_outputs(dpy_output_dir: str, project_name: str) -> tuple[dict, li
 
 
 def _dpy_module_class(entry: dict) -> str:
-    """Combine Module + Class into a single module_class string for the detail CSV."""
     parts = [entry.get("Module", ""), entry.get("Class", "")]
     return ".".join(p for p in parts if p)
 
@@ -365,7 +343,6 @@ def _empty_dpy_counts() -> dict:
 # ============================================================
 
 def extract_py_files(files_dict: dict, dest_dir: str) -> int:
-    """Write .py files from a {filename: code} dict to dest_dir. Returns count written."""
     os.makedirs(dest_dir, exist_ok=True)
     written = 0
     for filename, content in files_dict.items():
@@ -398,7 +375,117 @@ def _safe_int(val) -> Optional[int]:
 
 
 # ============================================================
-# SECTION 4 — Per-project processing
+# SECTION 4 — Refactored version column helpers
+# ============================================================
+
+def _ref_col_names(version: str) -> list[str]:
+    """Return all column names for one refactored version (e.g. 'v1')."""
+    p = f"{version}_"
+    return [
+        # PyExamine counts
+        f"{p}refactored_py_files",
+        f"{p}refactored_structural_smells",
+        f"{p}refactored_code_smells",
+        f"{p}refactored_architectural_smells",
+        f"{p}refactored_total_smells",
+        # PyExamine deltas vs baseline
+        f"{p}delta_ref_vs_baseline_structural",
+        f"{p}delta_ref_vs_baseline_code",
+        f"{p}delta_ref_vs_baseline_architectural",
+        f"{p}delta_ref_vs_baseline_total",
+        # PyExamine deltas vs post-review
+        f"{p}delta_ref_vs_postreview_structural",
+        f"{p}delta_ref_vs_postreview_code",
+        f"{p}delta_ref_vs_postreview_architectural",
+        f"{p}delta_ref_vs_postreview_total",
+        # DPy counts
+        f"{p}refactored_dpy_implementation_smells",
+        f"{p}refactored_dpy_design_smells",
+        f"{p}refactored_dpy_architecture_smells",
+        f"{p}refactored_dpy_total_smells",
+        # DPy deltas vs baseline
+        f"{p}delta_ref_vs_baseline_dpy_implementation",
+        f"{p}delta_ref_vs_baseline_dpy_design",
+        f"{p}delta_ref_vs_baseline_dpy_architecture",
+        f"{p}delta_ref_vs_baseline_dpy_total",
+        # DPy deltas vs post-review
+        f"{p}delta_ref_vs_postreview_dpy_implementation",
+        f"{p}delta_ref_vs_postreview_dpy_design",
+        f"{p}delta_ref_vs_postreview_dpy_architecture",
+        f"{p}delta_ref_vs_postreview_dpy_total",
+    ]
+
+
+def _empty_ref_cols(version: str) -> dict:
+    """Return a dict of all refactored columns for one version, all None."""
+    return {col: None for col in _ref_col_names(version)}
+
+
+def _fill_ref_cols(
+    version: str,
+    ref_py_files: int,
+    ref_pe_counts: dict,
+    ref_dpy_counts: dict,
+    baseline_counts_pe: Optional[dict],
+    postreview_counts_pe: Optional[dict],
+    baseline_counts_dpy: Optional[dict],
+    postreview_counts_dpy: Optional[dict],
+) -> dict:
+    """
+    Build the vN_* column dict for one refactored version,
+    computing deltas against the project's baseline and post-review turns.
+    """
+    p = f"{version}_"
+
+    def _delta(ref_val, base_val):
+        if ref_val is None or base_val is None:
+            return None
+        return ref_val - base_val
+
+    cols = {}
+
+    # ── PyExamine ─────────────────────────────────────────────────────────────
+    cols[f"{p}refactored_py_files"]               = ref_py_files
+    cols[f"{p}refactored_structural_smells"]       = ref_pe_counts["structural_smells"]
+    cols[f"{p}refactored_code_smells"]             = ref_pe_counts["code_smells"]
+    cols[f"{p}refactored_architectural_smells"]    = ref_pe_counts["architectural_smells"]
+    cols[f"{p}refactored_total_smells"]            = ref_pe_counts["total_smells"]
+
+    b = baseline_counts_pe
+    cols[f"{p}delta_ref_vs_baseline_structural"]    = _delta(ref_pe_counts["structural_smells"],    b["structural_smells"])    if b else None
+    cols[f"{p}delta_ref_vs_baseline_code"]          = _delta(ref_pe_counts["code_smells"],          b["code_smells"])          if b else None
+    cols[f"{p}delta_ref_vs_baseline_architectural"] = _delta(ref_pe_counts["architectural_smells"], b["architectural_smells"]) if b else None
+    cols[f"{p}delta_ref_vs_baseline_total"]         = _delta(ref_pe_counts["total_smells"],         b["total_smells"])         if b else None
+
+    p2 = postreview_counts_pe
+    cols[f"{p}delta_ref_vs_postreview_structural"]    = _delta(ref_pe_counts["structural_smells"],    p2["structural_smells"])    if p2 else None
+    cols[f"{p}delta_ref_vs_postreview_code"]          = _delta(ref_pe_counts["code_smells"],          p2["code_smells"])          if p2 else None
+    cols[f"{p}delta_ref_vs_postreview_architectural"] = _delta(ref_pe_counts["architectural_smells"], p2["architectural_smells"]) if p2 else None
+    cols[f"{p}delta_ref_vs_postreview_total"]         = _delta(ref_pe_counts["total_smells"],         p2["total_smells"])         if p2 else None
+
+    # ── DPy ───────────────────────────────────────────────────────────────────
+    cols[f"{p}refactored_dpy_implementation_smells"] = ref_dpy_counts["dpy_implementation_smells"]
+    cols[f"{p}refactored_dpy_design_smells"]         = ref_dpy_counts["dpy_design_smells"]
+    cols[f"{p}refactored_dpy_architecture_smells"]   = ref_dpy_counts["dpy_architecture_smells"]
+    cols[f"{p}refactored_dpy_total_smells"]          = ref_dpy_counts["dpy_total_smells"]
+
+    b = baseline_counts_dpy
+    cols[f"{p}delta_ref_vs_baseline_dpy_implementation"] = _delta(ref_dpy_counts["dpy_implementation_smells"], b["dpy_implementation_smells"]) if b else None
+    cols[f"{p}delta_ref_vs_baseline_dpy_design"]         = _delta(ref_dpy_counts["dpy_design_smells"],         b["dpy_design_smells"])         if b else None
+    cols[f"{p}delta_ref_vs_baseline_dpy_architecture"]   = _delta(ref_dpy_counts["dpy_architecture_smells"],   b["dpy_architecture_smells"])   if b else None
+    cols[f"{p}delta_ref_vs_baseline_dpy_total"]          = _delta(ref_dpy_counts["dpy_total_smells"],          b["dpy_total_smells"])          if b else None
+
+    p2 = postreview_counts_dpy
+    cols[f"{p}delta_ref_vs_postreview_dpy_implementation"] = _delta(ref_dpy_counts["dpy_implementation_smells"], p2["dpy_implementation_smells"]) if p2 else None
+    cols[f"{p}delta_ref_vs_postreview_dpy_design"]         = _delta(ref_dpy_counts["dpy_design_smells"],         p2["dpy_design_smells"])         if p2 else None
+    cols[f"{p}delta_ref_vs_postreview_dpy_architecture"]   = _delta(ref_dpy_counts["dpy_architecture_smells"],   p2["dpy_architecture_smells"])   if p2 else None
+    cols[f"{p}delta_ref_vs_postreview_dpy_total"]          = _delta(ref_dpy_counts["dpy_total_smells"],          p2["dpy_total_smells"])          if p2 else None
+
+    return cols
+
+
+# ============================================================
+# SECTION 5 — Per-project processing
 # ============================================================
 
 def process_pkl(
@@ -406,15 +493,13 @@ def process_pkl(
     work_root: str,
     config_path: str,
     dpy_bin_dir: Optional[str],
-    refactored_dir: Optional[str],
+    refactored_dirs: list[tuple[str, str]],   # [(version_label, abs_path), ...]
 ) -> Optional[tuple[list[dict], list[dict]]]:
     """
     Process one project .pkl file.
 
-    For each turn, runs both PyExamine and DPy (with caching).
-    For the refactored snapshot (if --refactored_dir provided), same tools.
-    Computes deltas vs baseline (first Coding turn) and vs post-review
-    (last CodeReviewModification turn) for both tools.
+    refactored_dirs is a list of (version_label, dir_path) tuples,
+    e.g. [("v1", "/abs/refactored_code"), ("v2", "/abs/refactored_code_v2"), ...]
 
     Returns (turn_rows, detail_rows) or None on failure.
     """
@@ -440,10 +525,9 @@ def process_pkl(
     turn_rows   = []
     detail_rows = []
 
-    # Baseline = first Coding turn; post-review = last CodeReviewModification
-    baseline_counts_pe   = None   # pyexamine
-    postreview_counts_pe = None
-    baseline_counts_dpy  = None   # dpy
+    baseline_counts_pe    = None
+    postreview_counts_pe  = None
+    baseline_counts_dpy   = None
     postreview_counts_dpy = None
 
     # ── Process each turn ────────────────────────────────────────────────────
@@ -473,14 +557,12 @@ def process_pkl(
             dpy_counts = _empty_dpy_counts()
             dpy_smells = []
         else:
-            # ── PyExamine ────────────────────────────────────────────────────
             pe_counts, pe_smells = run_pyexamine(snap_src, report_stem, config_path)
             print(f"    [pyexamine] structural={pe_counts['structural_smells']}  "
                   f"code={pe_counts['code_smells']}  "
                   f"architectural={pe_counts['architectural_smells']}  "
                   f"total={pe_counts['total_smells']}")
 
-            # ── DPy ──────────────────────────────────────────────────────────
             if dpy_bin_dir:
                 dpy_out = os.path.join(work_dir, f"turn_{turn_index:02d}_dpy_output")
                 dpy_counts, dpy_smells = run_dpy(snap_src, dpy_out, dpy_bin_dir)
@@ -492,15 +574,15 @@ def process_pkl(
                 dpy_counts = _empty_dpy_counts()
                 dpy_smells = []
 
-        # Track baseline and post-review
         if phase == "Coding":
             if baseline_counts_pe  is None: baseline_counts_pe  = pe_counts
             if baseline_counts_dpy is None: baseline_counts_dpy = dpy_counts
         if phase == "CodeReviewModification":
-            postreview_counts_pe  = pe_counts   # last one wins
+            postreview_counts_pe  = pe_counts
             postreview_counts_dpy = dpy_counts
 
-        turn_rows.append({
+        # Build base row — vN_* cols pre-filled as None, back-filled below
+        row = {
             "project":              project_name,
             "turn_index":           turn_index,
             "phase":                phase,
@@ -509,210 +591,118 @@ def process_pkl(
             "timestamp":            timestamp,
             "py_files":             py_file_count,
             "code_lines":           code_lines,
-            # PyExamine counts
             "structural_smells":    pe_counts["structural_smells"],
             "code_smells":          pe_counts["code_smells"],
             "architectural_smells": pe_counts["architectural_smells"],
             "total_smells":         pe_counts["total_smells"],
-            # DPy counts
             "dpy_implementation_smells": dpy_counts["dpy_implementation_smells"],
             "dpy_design_smells":         dpy_counts["dpy_design_smells"],
             "dpy_architecture_smells":   dpy_counts["dpy_architecture_smells"],
             "dpy_total_smells":          dpy_counts["dpy_total_smells"],
-            # Tokens / cost
             "tokens_prompt":        turn.get("tokens_prompt",     0) or 0,
             "tokens_completion":    turn.get("tokens_completion",  0) or 0,
             "tokens_reasoning":     turn.get("tokens_reasoning",   0) or 0,
             "tokens_total":         turn.get("tokens_total",       0) or 0,
             "cost_usd":             turn.get("cost_usd",         0.0) or 0.0,
-            # Refactored columns — back-filled after refactored analysis below
-            "refactored_py_files":                          None,
-            "refactored_structural_smells":                 None,
-            "refactored_code_smells":                       None,
-            "refactored_architectural_smells":              None,
-            "refactored_total_smells":                      None,
-            "delta_ref_vs_baseline_structural":             None,
-            "delta_ref_vs_baseline_code":                   None,
-            "delta_ref_vs_baseline_architectural":          None,
-            "delta_ref_vs_baseline_total":                  None,
-            "delta_ref_vs_postreview_structural":           None,
-            "delta_ref_vs_postreview_code":                 None,
-            "delta_ref_vs_postreview_architectural":        None,
-            "delta_ref_vs_postreview_total":                None,
-            "refactored_dpy_implementation_smells":         None,
-            "refactored_dpy_design_smells":                 None,
-            "refactored_dpy_architecture_smells":           None,
-            "refactored_dpy_total_smells":                  None,
-            "delta_ref_vs_baseline_dpy_implementation":     None,
-            "delta_ref_vs_baseline_dpy_design":             None,
-            "delta_ref_vs_baseline_dpy_architecture":       None,
-            "delta_ref_vs_baseline_dpy_total":              None,
-            "delta_ref_vs_postreview_dpy_implementation":   None,
-            "delta_ref_vs_postreview_dpy_design":           None,
-            "delta_ref_vs_postreview_dpy_architecture":     None,
-            "delta_ref_vs_postreview_dpy_total":            None,
-        })
+        }
+        for version, _ in refactored_dirs:
+            row.update(_empty_ref_cols(version))
+        turn_rows.append(row)
 
-        # Detail rows — tag each with its tool
         for smell in pe_smells:
             detail_rows.append({
-                "project":    project_name,
-                "turn_index": turn_index,
-                "phase":      phase,
-                "snapshot":   f"turn_{turn_index}",
-                **smell,
+                "project": project_name, "turn_index": turn_index,
+                "phase": phase, "snapshot": f"turn_{turn_index}", **smell,
             })
         for smell in dpy_smells:
             detail_rows.append({
-                "project":    project_name,
-                "turn_index": turn_index,
-                "phase":      phase,
-                "snapshot":   f"turn_{turn_index}",
-                **smell,
+                "project": project_name, "turn_index": turn_index,
+                "phase": phase, "snapshot": f"turn_{turn_index}", **smell,
             })
 
-    # ── Refactored snapshot ───────────────────────────────────────────────────
-    ref_pe_counts  = None
-    ref_dpy_counts = None
-    ref_py_files   = 0
-
-    if refactored_dir:
-        ref_src = os.path.join(refactored_dir, project_name)
+    # ── Refactored snapshots — one pass per version ───────────────────────────
+    for version, ref_root in refactored_dirs:
+        ref_src = os.path.join(ref_root, project_name)
 
         if not Path(ref_src).exists():
-            print(f"  Refactored dir not found: {ref_src} — skipping refactored snapshot")
+            print(f"  [{version}] Refactored dir not found: {ref_src} — skipping")
+            continue
+
+        ref_py_files = count_py_files_in_dir(ref_src)
+        if ref_py_files == 0:
+            print(f"  [{version}] No .py files in refactored dir — skipping")
+            continue
+
+        print(f"  [{version}] Refactored snapshot ({ref_py_files} .py files)...")
+
+        # PyExamine — unique report stem per version
+        ref_pe_stem = os.path.join(work_dir, f"{project_name}_{version}_refactored_report")
+        ref_pe_counts, ref_pe_smells = run_pyexamine(ref_src, ref_pe_stem, config_path)
+        print(f"    [pyexamine] structural={ref_pe_counts['structural_smells']}  "
+              f"code={ref_pe_counts['code_smells']}  "
+              f"architectural={ref_pe_counts['architectural_smells']}  "
+              f"total={ref_pe_counts['total_smells']}")
+
+        for smell in ref_pe_smells:
+            detail_rows.append({
+                "project": project_name, "turn_index": None,
+                "phase": f"Refactored_{version}",
+                "snapshot": f"refactored_{version}", **smell,
+            })
+
+        # DPy — unique output dir per version
+        if dpy_bin_dir:
+            ref_dpy_out = os.path.join(
+                work_dir, f"{project_name}_{version}_refactored_dpy_output"
+            )
+            ref_dpy_counts, ref_dpy_smells = run_dpy(ref_src, ref_dpy_out, dpy_bin_dir)
+            print(f"    [dpy]       implementation={ref_dpy_counts['dpy_implementation_smells']}  "
+                  f"design={ref_dpy_counts['dpy_design_smells']}  "
+                  f"architecture={ref_dpy_counts['dpy_architecture_smells']}  "
+                  f"total={ref_dpy_counts['dpy_total_smells']}")
+
+            for smell in ref_dpy_smells:
+                detail_rows.append({
+                    "project": project_name, "turn_index": None,
+                    "phase": f"Refactored_{version}",
+                    "snapshot": f"refactored_{version}", **smell,
+                })
         else:
-            ref_py_files = count_py_files_in_dir(ref_src)
+            ref_dpy_counts = _empty_dpy_counts()
 
-            if ref_py_files == 0:
-                print(f"  Refactored dir has no .py files — skipping")
-                ref_pe_counts  = _empty_pyexamine_counts()
-                ref_dpy_counts = _empty_dpy_counts()
-            else:
-                print(f"  Refactored snapshot ({ref_py_files} .py files)...")
-
-                # PyExamine on refactored
-                ref_pe_stem = os.path.join(work_dir, f"{project_name}_refactored_report")
-                ref_pe_counts, ref_pe_smells = run_pyexamine(
-                    ref_src, ref_pe_stem, config_path
-                )
-                print(f"    [pyexamine] structural={ref_pe_counts['structural_smells']}  "
-                      f"code={ref_pe_counts['code_smells']}  "
-                      f"architectural={ref_pe_counts['architectural_smells']}  "
-                      f"total={ref_pe_counts['total_smells']}")
-
-                for smell in ref_pe_smells:
-                    detail_rows.append({
-                        "project":    project_name,
-                        "turn_index": None,
-                        "phase":      "Refactored",
-                        "snapshot":   "refactored",
-                        **smell,
-                    })
-
-                # DPy on refactored
-                if dpy_bin_dir:
-                    ref_dpy_out = os.path.join(work_dir, f"{project_name}_refactored_dpy_output")
-                    ref_dpy_counts, ref_dpy_smells = run_dpy(
-                        ref_src, ref_dpy_out, dpy_bin_dir
-                    )
-                    print(f"    [dpy]       implementation={ref_dpy_counts['dpy_implementation_smells']}  "
-                          f"design={ref_dpy_counts['dpy_design_smells']}  "
-                          f"architecture={ref_dpy_counts['dpy_architecture_smells']}  "
-                          f"total={ref_dpy_counts['dpy_total_smells']}")
-
-                    for smell in ref_dpy_smells:
-                        detail_rows.append({
-                            "project":    project_name,
-                            "turn_index": None,
-                            "phase":      "Refactored",
-                            "snapshot":   "refactored",
-                            **smell,
-                        })
-                else:
-                    ref_dpy_counts = _empty_dpy_counts()
-
-    # ── Back-fill refactored columns into every turn row ─────────────────────
-    def _delta(ref_val, base_val):
-        if base_val is None or ref_val is None:
-            return None
-        return ref_val - base_val
-
-    if ref_pe_counts is not None or ref_dpy_counts is not None:
+        # Back-fill vN_* columns into every turn row for this project
+        filled = _fill_ref_cols(
+            version,
+            ref_py_files,
+            ref_pe_counts,
+            ref_dpy_counts,
+            baseline_counts_pe,
+            postreview_counts_pe,
+            baseline_counts_dpy,
+            postreview_counts_dpy,
+        )
         for row in turn_rows:
-            # PyExamine refactored
-            if ref_pe_counts is not None:
-                row["refactored_py_files"]               = ref_py_files
-                row["refactored_structural_smells"]      = ref_pe_counts["structural_smells"]
-                row["refactored_code_smells"]            = ref_pe_counts["code_smells"]
-                row["refactored_architectural_smells"]   = ref_pe_counts["architectural_smells"]
-                row["refactored_total_smells"]           = ref_pe_counts["total_smells"]
-
-                b = baseline_counts_pe
-                row["delta_ref_vs_baseline_structural"]    = _delta(ref_pe_counts["structural_smells"],    b["structural_smells"])    if b else None
-                row["delta_ref_vs_baseline_code"]          = _delta(ref_pe_counts["code_smells"],          b["code_smells"])          if b else None
-                row["delta_ref_vs_baseline_architectural"] = _delta(ref_pe_counts["architectural_smells"], b["architectural_smells"]) if b else None
-                row["delta_ref_vs_baseline_total"]         = _delta(ref_pe_counts["total_smells"],         b["total_smells"])         if b else None
-
-                p = postreview_counts_pe
-                row["delta_ref_vs_postreview_structural"]    = _delta(ref_pe_counts["structural_smells"],    p["structural_smells"])    if p else None
-                row["delta_ref_vs_postreview_code"]          = _delta(ref_pe_counts["code_smells"],          p["code_smells"])          if p else None
-                row["delta_ref_vs_postreview_architectural"] = _delta(ref_pe_counts["architectural_smells"], p["architectural_smells"]) if p else None
-                row["delta_ref_vs_postreview_total"]         = _delta(ref_pe_counts["total_smells"],         p["total_smells"])         if p else None
-
-            # DPy refactored
-            if ref_dpy_counts is not None:
-                row["refactored_dpy_implementation_smells"] = ref_dpy_counts["dpy_implementation_smells"]
-                row["refactored_dpy_design_smells"]         = ref_dpy_counts["dpy_design_smells"]
-                row["refactored_dpy_architecture_smells"]   = ref_dpy_counts["dpy_architecture_smells"]
-                row["refactored_dpy_total_smells"]          = ref_dpy_counts["dpy_total_smells"]
-
-                b = baseline_counts_dpy
-                row["delta_ref_vs_baseline_dpy_implementation"] = _delta(ref_dpy_counts["dpy_implementation_smells"], b["dpy_implementation_smells"]) if b else None
-                row["delta_ref_vs_baseline_dpy_design"]         = _delta(ref_dpy_counts["dpy_design_smells"],         b["dpy_design_smells"])         if b else None
-                row["delta_ref_vs_baseline_dpy_architecture"]   = _delta(ref_dpy_counts["dpy_architecture_smells"],   b["dpy_architecture_smells"])   if b else None
-                row["delta_ref_vs_baseline_dpy_total"]          = _delta(ref_dpy_counts["dpy_total_smells"],          b["dpy_total_smells"])          if b else None
-
-                p = postreview_counts_dpy
-                row["delta_ref_vs_postreview_dpy_implementation"] = _delta(ref_dpy_counts["dpy_implementation_smells"], p["dpy_implementation_smells"]) if p else None
-                row["delta_ref_vs_postreview_dpy_design"]         = _delta(ref_dpy_counts["dpy_design_smells"],         p["dpy_design_smells"])         if p else None
-                row["delta_ref_vs_postreview_dpy_architecture"]   = _delta(ref_dpy_counts["dpy_architecture_smells"],   p["dpy_architecture_smells"])   if p else None
-                row["delta_ref_vs_postreview_dpy_total"]          = _delta(ref_dpy_counts["dpy_total_smells"],          p["dpy_total_smells"])          if p else None
+            row.update(filled)
 
     print(f"  Done — {len(turn_rows)} turns, {len(detail_rows)} smell instances")
     return turn_rows, detail_rows
 
 
 # ============================================================
-# SECTION 5 — Main
+# SECTION 6 — Field list builder + Main
 # ============================================================
 
-TURN_FIELDS = [
+BASE_TURN_FIELDS = [
     "project", "turn_index", "phase", "role", "interlocutor", "timestamp",
     "py_files", "code_lines",
-    # PyExamine
+    # PyExamine per-turn
     "structural_smells", "code_smells", "architectural_smells", "total_smells",
-    # DPy
+    # DPy per-turn
     "dpy_implementation_smells", "dpy_design_smells",
     "dpy_architecture_smells", "dpy_total_smells",
     # Tokens / cost
     "tokens_prompt", "tokens_completion", "tokens_reasoning",
     "tokens_total", "cost_usd",
-    # Refactored — PyExamine
-    "refactored_py_files",
-    "refactored_structural_smells", "refactored_code_smells",
-    "refactored_architectural_smells", "refactored_total_smells",
-    "delta_ref_vs_baseline_structural", "delta_ref_vs_baseline_code",
-    "delta_ref_vs_baseline_architectural", "delta_ref_vs_baseline_total",
-    "delta_ref_vs_postreview_structural", "delta_ref_vs_postreview_code",
-    "delta_ref_vs_postreview_architectural", "delta_ref_vs_postreview_total",
-    # Refactored — DPy
-    "refactored_dpy_implementation_smells", "refactored_dpy_design_smells",
-    "refactored_dpy_architecture_smells", "refactored_dpy_total_smells",
-    "delta_ref_vs_baseline_dpy_implementation", "delta_ref_vs_baseline_dpy_design",
-    "delta_ref_vs_baseline_dpy_architecture", "delta_ref_vs_baseline_dpy_total",
-    "delta_ref_vs_postreview_dpy_implementation", "delta_ref_vs_postreview_dpy_design",
-    "delta_ref_vs_postreview_dpy_architecture", "delta_ref_vs_postreview_dpy_total",
 ]
 
 DETAIL_FIELDS = [
@@ -722,23 +712,39 @@ DETAIL_FIELDS = [
 ]
 
 
+def build_turn_fields(versions: list[str]) -> list[str]:
+    """Append vN_* column blocks after the base fields, one block per version."""
+    fields = list(BASE_TURN_FIELDS)
+    for version in versions:
+        fields.extend(_ref_col_names(version))
+    return fields
+
+
 def main():
     parser = argparse.ArgumentParser(
-        description="RQ3 v3: Per-turn + refactored smell analysis (PyExamine + DPy)"
+        description="RQ3 v4: Per-turn + multi-version refactored smell analysis "
+                    "(PyExamine + DPy)"
     )
-    parser.add_argument("--pkl_dir",        required=True,
+    parser.add_argument("--pkl_dir",  required=True,
                         help="Directory containing .pkl project files")
-    parser.add_argument("--config",         required=True,
+    parser.add_argument("--config",   required=True,
                         help="Path to code_quality_config.yaml")
-    parser.add_argument("--dpy_dir",        default=None,
-                        help="Path to the DPy/ folder containing the DPy binary "
-                             "(e.g. ./DPy).  Omit to skip DPy analysis.")
-    parser.add_argument("--output",         default="rq3_results.csv",
+    parser.add_argument("--dpy_dir",  default=None,
+                        help="Path to the DPy/ folder containing the DPy binary. "
+                             "Omit to skip DPy analysis.")
+    parser.add_argument("--output",   default="rq3_results.csv",
                         help="Output CSV path (default: rq3_results.csv)")
-    parser.add_argument("--work_dir",       default="rq3_workdir",
-                        help="Working dir for snapshots/reports (default: rq3_workdir)")
-    parser.add_argument("--refactored_dir", default=None,
-                        help="Root dir containing refactored_code/project_name/ folders")
+    parser.add_argument("--work_dir", default="rq3_workdir",
+                        help="Working dir for snapshots/reports")
+    parser.add_argument(
+        "--refactored_dirs",
+        nargs="+",
+        default=[],
+        metavar="DIR",
+        help="One or more refactored code root dirs in version order "
+             "(e.g. ./refactored_code ./refactored_code_v2 ./refactored_code_v3). "
+             "Labelled v1, v2, v3 ... automatically.",
+    )
     args = parser.parse_args()
 
     if not os.path.isfile(args.config):
@@ -756,17 +762,24 @@ def main():
     else:
         print("No --dpy_dir provided — DPy columns will be zero/empty")
 
+    # Build [(version_label, abs_path), ...] — auto-label v1, v2, v3 ...
+    refactored_dirs = [
+        (f"v{i+1}", os.path.abspath(d))
+        for i, d in enumerate(args.refactored_dirs)
+    ]
+    if refactored_dirs:
+        print("Refactored versions:")
+        for version, path in refactored_dirs:
+            print(f"  {version} → {path}")
+    else:
+        print("No --refactored_dirs provided — refactored columns will be empty")
+
     pkl_files = sorted(Path(args.pkl_dir).glob("*.pkl"))
     if not pkl_files:
         print(f"No .pkl files found in: {args.pkl_dir}")
         sys.exit(1)
 
     print(f"Found {len(pkl_files)} project(s)")
-    if args.refactored_dir:
-        print(f"Refactored dir : {args.refactored_dir}")
-    else:
-        print("No --refactored_dir provided — refactored columns will be empty")
-
     os.makedirs(args.work_dir, exist_ok=True)
 
     all_turn_rows   = []
@@ -779,7 +792,7 @@ def main():
             args.work_dir,
             args.config,
             dpy_bin_dir,
-            args.refactored_dir,
+            refactored_dirs,
         )
         if result is not None:
             turn_rows, detail_rows = result
@@ -794,9 +807,12 @@ def main():
         print("No results produced.")
         sys.exit(1)
 
+    versions    = [v for v, _ in refactored_dirs]
+    turn_fields = build_turn_fields(versions)
+
     # ── Turn-level CSV ────────────────────────────────────────────────────────
     with open(args.output, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=TURN_FIELDS)
+        writer = csv.DictWriter(f, fieldnames=turn_fields, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(all_turn_rows)
     print(f"\nTurn-level CSV   → {args.output} ({len(all_turn_rows)} rows)")

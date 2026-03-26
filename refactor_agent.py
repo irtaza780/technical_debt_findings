@@ -12,7 +12,13 @@ load_dotenv()
 
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 RQ3_WORKDIR       = "./rq3_workdir"
-OUTPUT_DIR        = "./refactored_code"
+
+# v1 = refactored_code (already exists — never touched by this script)
+# v2 and v3 are produced fresh from the same original last-turn source
+OUTPUT_DIRS = [
+    "./refactored_code_v2",
+    "./refactored_code_v3",
+]
 
 if not ANTHROPIC_API_KEY:
     raise ValueError("ANTHROPIC_API_KEY not found in .env file.")
@@ -21,7 +27,7 @@ if not ANTHROPIC_API_KEY:
 
 # ── LLM Setup ────────────────────────────────
 llm = ChatAnthropic(
-    model="claude-haiku-4-5",    # cheapest + fastest, still great for refactoring
+    model="claude-haiku-4-5",
     api_key=ANTHROPIC_API_KEY,
     temperature=0,
     max_tokens=4096,
@@ -118,108 +124,119 @@ def already_refactored(project_name: str, output_dir: str) -> bool:
     return len(py_files) > 0
 
 
-def get_relative_output_path(source_root: str, filepath: str, output_dir: str) -> str:
+# ─────────────────────────────────────────────
+# REFACTOR ONE PROJECT INTO ONE OUTPUT DIR
+# ─────────────────────────────────────────────
+
+def refactor_project(project_path: str, output_dir: str) -> bool:
     """
-    Maps source file to output path preserving relative structure.
-    e.g. ./rq3_workdir/Game/turn_04_src/utils/helpers.py
-      -> ./refactored_code/Game/utils/helpers.py
+    Refactor a single project's last turn into output_dir.
+    Always reads from the original rq3_workdir last-turn source — never from
+    a previous refactoring output.
+    Returns True if successful, False if it should be skipped/cleaned.
     """
-    rel = os.path.relpath(filepath, source_root)
-    return os.path.join(output_dir, rel)
+    project_name = os.path.basename(project_path)
+
+    if already_refactored(project_name, output_dir):
+        print(f"   ⏭️  Already done in {output_dir} — skipping.")
+        return True   # counts as done, not a failure
+
+    last_turn = get_last_turn_folder(project_path)
+    if not last_turn:
+        print(f"   ⚠️  No turn_XX_src found — skipping.")
+        return False
+
+    py_files = glob.glob(os.path.join(last_turn, "**/*.py"), recursive=True)
+    py_files = [f for f in py_files if os.path.isfile(f)]
+
+    if not py_files:
+        print(f"   ⚠️  No .py files in last turn — skipping.")
+        return False
+
+    output_project_dir = os.path.join(output_dir, project_name)
+    turn_name          = os.path.basename(last_turn)
+
+    print(f"   Turn   : {turn_name}")
+    print(f"   Files  : {len(py_files)}")
+
+    for filepath in py_files:
+        filename = os.path.relpath(filepath, last_turn)
+        print(f"   📄 {filename} ... ", end="", flush=True)
+
+        with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+            original_code = f.read()
+
+        if not original_code.strip():
+            print("empty, skipped.")
+            continue
+
+        refactored = refactor_with_retry(original_code)
+
+        if refactored is None:
+            print("❌ failed after retries.")
+            # Clean up incomplete output so it reruns next time
+            import shutil
+            if os.path.isdir(output_project_dir):
+                shutil.rmtree(output_project_dir)
+                print(f"   🧹 Cleaned up incomplete output.")
+            return False
+
+        # Preserve relative path structure from last_turn into output
+        rel  = os.path.relpath(filepath, last_turn)
+        dest = os.path.join(output_project_dir, rel)
+        os.makedirs(os.path.dirname(dest), exist_ok=True)
+        with open(dest, "w", encoding="utf-8") as f:
+            f.write(refactored)
+
+        print("✅")
+
+    return True
 
 
 # ─────────────────────────────────────────────
-# MAIN RUNNER — pure Python loop, no agent
+# MAIN
 # ─────────────────────────────────────────────
 
 if __name__ == "__main__":
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    for output_dir in OUTPUT_DIRS:
+        os.makedirs(output_dir, exist_ok=True)
 
-    projects  = get_all_projects(RQ3_WORKDIR)
-    print(f"\n🔍 Found {len(projects)} projects in {RQ3_WORKDIR}\n")
+    projects = get_all_projects(RQ3_WORKDIR)
+    print(f"\n🔍 Found {len(projects)} projects in {RQ3_WORKDIR}")
+    print(f"📂 Producing: {', '.join(OUTPUT_DIRS)}")
+    print(f"📌 v1 (refactored_code/) is assumed complete — not touched.\n")
 
-    skipped   = []
-    processed = []
+    # Track results per output dir
+    results = {d: {"processed": [], "skipped": []} for d in OUTPUT_DIRS}
 
-    for project_path in projects:
-        project_name = os.path.basename(project_path)
+    for output_dir in OUTPUT_DIRS:
+        version = os.path.basename(output_dir)   # e.g. "refactored_code_v2"
+        print(f"\n{'═' * 50}")
+        print(f"  Running: {version}")
+        print(f"{'═' * 50}")
 
-        # ── Skip if already done ──
-        if already_refactored(project_name, OUTPUT_DIR):
-            print(f"⏭️  Skipping '{project_name}' — already refactored.")
-            skipped.append(project_name)
-            continue
+        for project_path in projects:
+            project_name = os.path.basename(project_path)
+            print(f"\n🤖 {project_name}")
 
-        # ── Find last turn ──
-        last_turn = get_last_turn_folder(project_path)
-        if not last_turn:
-            print(f"⚠️  No turn_XX_src in '{project_name}' — skipping.")
-            skipped.append(project_name)
-            continue
+            ok = refactor_project(project_path, output_dir)
 
-        # ── Find all .py files ──
-        py_files = glob.glob(os.path.join(last_turn, "**/*.py"), recursive=True)
-        py_files = [f for f in py_files if os.path.isfile(f)]
+            if ok:
+                results[output_dir]["processed"].append(project_name)
+            else:
+                results[output_dir]["skipped"].append(project_name)
 
-        if not py_files:
-            print(f"⚠️  No .py files in '{project_name}' last turn — skipping.")
-            skipped.append(project_name)
-            continue
-
-        output_project_dir = os.path.join(OUTPUT_DIR, project_name)
-        turn_name = os.path.basename(last_turn)
-
-        print(f"\n🤖 {project_name}")
-        print(f"   Turn   : {turn_name}")
-        print(f"   Files  : {len(py_files)}")
-
-        project_ok = True
-
-        for filepath in py_files:
-            filename = os.path.relpath(filepath, last_turn)
-            print(f"   📄 {filename} ... ", end="", flush=True)
-
-            # Read
-            with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
-                original_code = f.read()
-
-            if not original_code.strip():
-                print("empty, skipped.")
-                continue
-
-            # Refactor (1 LLM call per file)
-            refactored = refactor_with_retry(original_code)
-
-            if refactored is None:
-                print("❌ failed after retries.")
-                project_ok = False
-                break
-
-            # Save
-            dest = get_relative_output_path(last_turn, filepath, output_project_dir)
-            os.makedirs(os.path.dirname(dest), exist_ok=True)
-            with open(dest, "w", encoding="utf-8") as f:
-                f.write(refactored)
-
-            print("✅")
-
-        if project_ok:
-            processed.append(project_name)
-        else:
-            # Clean up incomplete output so it reruns next time
-            import shutil
-            out = os.path.join(OUTPUT_DIR, project_name)
-            if os.path.isdir(out):
-                shutil.rmtree(out)
-                print(f"   🧹 Cleaned up incomplete output for '{project_name}'")
-            skipped.append(project_name)
-
-    # ── Final summary ──
-    print("\n" + "═" * 50)
+    # ── Final summary ──────────────────────────────────────────────────────
+    print(f"\n{'═' * 50}")
     print("✅ ALL DONE")
-    print(f"   Processed : {len(processed)} projects")
-    print(f"   Skipped   : {len(skipped)} projects")
-    if skipped:
-        print(f"   Skipped   : {skipped}")
-    print(f"\n📁 Output: {os.path.abspath(OUTPUT_DIR)}")
-    print("═" * 50)
+    for output_dir in OUTPUT_DIRS:
+        version   = os.path.basename(output_dir)
+        processed = results[output_dir]["processed"]
+        skipped   = results[output_dir]["skipped"]
+        print(f"\n  {version}")
+        print(f"    Processed : {len(processed)} projects")
+        print(f"    Skipped   : {len(skipped)} projects")
+        if skipped:
+            print(f"    Skipped   : {skipped}")
+    print(f"\n📁 Outputs: {', '.join(os.path.abspath(d) for d in OUTPUT_DIRS)}")
+    print(f"{'═' * 50}")

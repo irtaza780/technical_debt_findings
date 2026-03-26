@@ -1,191 +1,191 @@
-project,turn_index,phase,role,interlocutor,timestamp,py_files,code_lines,structural_smells,code_smells,architectural_smells,total_smells,tokens_prompt,tokens_completion,tokens_reasoning,tokens_total,cost_usd
-2048_DefaultOrganization_20250908205825,0,Coding,Programmer,Chief Technology Officer,2025-08-09 21:00:05,2,260,3,6,2,11,691,8576,3136,9267,0.086624
-2048_DefaultOrganization_20250908205825,1,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 21:02:59,3,260,3,9,5,17,5790,7825,2880,13615,0.085487
-2048_DefaultOrganization_20250908205825,2,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 21:05:51,3,260,3,9,5,17,5843,7293,2432,13136,0.080234
-2048_DefaultOrganization_20250908205825,3,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 21:09:22,3,260,3,9,5,17,5399,7486,2624,12885,0.081609
-2048_DefaultOrganization_20250908205825,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-08-09 21:09:41,3,0,3,9,5,17,5330,600,576,5930,0.012663
-BudgetTracker_DefaultOrganization_20250909155642,0,Coding,Programmer,Chief Technology Officer,2025-09-09 15:59:09,5,705,13,3,7,23,558,10159,2432,10717,0.102288
-BudgetTracker_DefaultOrganization_20250909155642,1,CodeComplete,Programmer,Chief Technology Officer,2025-09-09 16:02:13,5,705,13,3,7,23,7919,9065,1536,16984,0.100549
-BudgetTracker_DefaultOrganization_20250909155642,2,CodeComplete,Programmer,Chief Technology Officer,2025-09-09 16:04:46,5,705,13,3,7,23,7919,9004,1472,16923,0.099939
-BudgetTracker_DefaultOrganization_20250909155642,3,CodeComplete,Programmer,Chief Technology Officer,2025-09-09 16:07:35,5,705,13,3,7,23,7915,8681,1152,16596,0.096704
-BudgetTracker_DefaultOrganization_20250909155642,4,CodeReviewModification,Programmer,Code Reviewer,2025-09-09 16:11:36,5,706,13,3,7,23,8412,9194,1600,17606,0.102455
-BudgetTracker_DefaultOrganization_20250909155642,5,CodeReviewModification,Programmer,Code Reviewer,2025-09-09 16:15:09,5,733,13,3,7,23,8570,8295,576,16865,0.093662
-BudgetTracker_DefaultOrganization_20250909155642,6,CodeReviewModification,Programmer,Code Reviewer,2025-09-09 16:19:36,5,734,13,3,7,23,8277,8828,1088,17105,0.098626
-CandyCrush_DefaultOrganization_20250923221010,0,Coding,Programmer,Chief Technology Officer,2025-23-09 22:12:50,0,0,0,0,0,0,673,10852,4096,11525,0.109361
-CandyCrush_DefaultOrganization_20250923221010,1,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 22:17:51,0,0,0,0,0,0,6998,7946,1728,14944,0.088208
-CandyCrush_DefaultOrganization_20250923221010,2,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 22:22:38,0,0,0,0,0,0,6986,8657,2304,15643,0.095303
-CandyCrush_DefaultOrganization_20250923221010,3,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 22:29:25,0,0,0,0,0,0,7549,8267,1664,15816,0.092106
-Checkers_DefaultOrganization_20250911143857,0,Coding,Programmer,Chief Technology Officer,2025-11-09 14:42:17,7,515,17,2,7,26,649,10454,4288,11103,0.105351
-Checkers_DefaultOrganization_20250911143857,1,CodeComplete,Programmer,Chief Technology Officer,2025-11-09 14:44:19,7,528,17,2,7,26,5980,6992,1344,12972,0.077395
-Checkers_DefaultOrganization_20250911143857,2,CodeComplete,Programmer,Chief Technology Officer,2025-11-09 14:47:08,7,528,17,2,7,26,6131,7183,1536,13314,0.079494
-Checkers_DefaultOrganization_20250911143857,3,CodeComplete,Programmer,Chief Technology Officer,2025-11-09 14:49:54,7,528,17,2,7,26,6124,6834,1216,12958,0.075995
-Checkers_DefaultOrganization_20250911143857,4,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 14:57:03,7,528,17,2,7,26,6114,8828,3200,14942,0.095922
-Checkers_DefaultOrganization_20250911143857,5,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 15:03:28,7,529,17,2,7,26,6124,8171,2496,14295,0.089365
-Checkers_DefaultOrganization_20250911143857,6,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 15:07:36,7,531,17,2,7,26,6550,7913,2240,14463,0.087317
-Checkers_DefaultOrganization_20250911143857,7,TestModification,Programmer,Software Test Engineer,2025-11-09 15:09:42,7,654,17,4,8,29,6186,4524,2304,10710,0.052973
-Checkers_DefaultOrganization_20250911143857,8,EnvironmentDoc,Programmer,Chief Technology Officer,2025-11-09 15:10:05,7,0,17,4,8,29,7247,853,832,8100,0.017589
-Checkers_DefaultOrganization_20250911143857,9,Reflection,Chief Executive Officer,Counselor,2025-11-09 15:10:19,7,654,17,4,8,29,7544,661,640,8205,0.01604
-Chess_DefaultOrganization_20250908153724,0,Coding,Programmer,Chief Technology Officer,2025-08-09 15:43:16,2,729,4,3,3,10,719,15524,5760,16243,0.156139
-Chess_DefaultOrganization_20250908153724,1,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 15:50:30,2,764,4,5,3,12,9224,12644,3200,21868,0.13797
-Chess_DefaultOrganization_20250908153724,2,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 15:55:28,2,764,4,3,3,10,9823,11153,1984,20976,0.123809
-Chess_DefaultOrganization_20250908153724,3,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 16:01:25,2,772,4,3,3,10,9874,12062,2816,21936,0.132963
-Chess_DefaultOrganization_20250908153724,4,TestModification,Programmer,Software Test Engineer,2025-08-09 16:05:11,4,684,14,8,5,27,9150,10506,3392,19656,0.116498
-Chess_DefaultOrganization_20250908153724,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-08-09 16:05:42,4,0,14,8,5,27,8255,805,768,9060,0.018369
-Chess_DefaultOrganization_20250908153724,6,Reflection,Chief Executive Officer,Counselor,2025-08-09 16:06:05,4,684,14,8,5,27,8603,945,896,9548,0.020204
-ConnectFour_DefaultOrganization_20250915215741,0,Coding,Programmer,Chief Technology Officer,2025-15-09 21:59:43,3,339,4,2,1,7,695,6629,3008,7324,0.067159
-ConnectFour_DefaultOrganization_20250915215741,1,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:01:44,3,357,5,2,1,8,4158,4652,1216,8810,0.051718
-ConnectFour_DefaultOrganization_20250915215741,2,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:04:23,3,362,5,2,1,8,4264,5137,1664,9401,0.0567
-ConnectFour_DefaultOrganization_20250915215741,3,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:07:00,3,362,5,2,1,8,4014,4560,1088,8574,0.050618
-ConnectFour_DefaultOrganization_20250915215741,4,Reflection,Chief Executive Officer,Counselor,2025-15-09 22:07:50,3,362,5,2,1,8,4298,702,640,5000,0.012393
-ConnectionsNYT_DefaultOrganization_20250915165955,0,Coding,Programmer,Chief Technology Officer,2025-15-09 17:04:14,4,480,7,4,4,15,771,11494,5376,12265,0.115904
-ConnectionsNYT_DefaultOrganization_20250915165955,1,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:08:04,5,200,0,12,4,16,6710,8727,3968,15437,0.095658
-ConnectionsNYT_DefaultOrganization_20250915165955,2,CodeReviewComment,Code Reviewer,Programmer,2025-15-09 17:10:03,5,0,0,10,4,14,3206,5002,2944,8208,0.054028
-ConnectionsNYT_DefaultOrganization_20250915165955,3,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:12:43,5,399,0,10,4,14,5273,7816,3264,13089,0.084751
-ConnectionsNYT_DefaultOrganization_20250915165955,4,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:16:06,5,399,0,17,5,22,5476,6052,1600,11528,0.067365
-ConnectionsNYT_DefaultOrganization_20250915165955,5,TestModification,Programmer,Software Test Engineer,2025-15-09 17:17:39,5,478,0,10,5,15,5026,4768,1984,9794,0.053962
-ConnectionsNYT_DefaultOrganization_20250915165955,6,Reflection,Chief Executive Officer,Counselor,2025-15-09 17:18:08,5,478,0,10,5,15,6213,984,960,7197,0.017606
-DetectPalindromes_DefaultOrganization_20250911160644,0,Coding,Programmer,Chief Technology Officer,2025-11-09 16:08:52,5,295,5,2,3,10,566,8685,3456,9251,0.087558
-DetectPalindromes_DefaultOrganization_20250911160644,1,CodeReviewComment,Code Reviewer,Programmer,2025-11-09 16:10:41,5,0,4,3,2,9,3529,4901,3520,8430,0.053421
-DetectPalindromes_DefaultOrganization_20250911160644,2,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 16:12:42,5,425,4,3,2,9,4920,5830,1536,10750,0.06445
-DetectPalindromes_DefaultOrganization_20250911160644,3,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 16:16:03,5,436,4,3,3,10,5014,5452,1088,10466,0.060788
-DetectPalindromes_DefaultOrganization_20250911160644,4,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 16:21:21,5,486,4,5,4,13,5159,7613,2752,12772,0.082579
-DetectPalindromes_DefaultOrganization_20250911160644,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-11-09 16:21:38,5,0,4,5,4,13,5204,960,896,6164,0.016105
-DetectPalindromes_DefaultOrganization_20250911160644,6,Reflection,Chief Executive Officer,Counselor,2025-11-09 16:21:54,5,486,4,5,4,13,5503,820,768,6323,0.015079
-DouDizhuPoker_DefaultOrganization_20250915221401,0,Coding,Programmer,Chief Technology Officer,2025-15-09 22:19:22,6,1139,33,17,4,54,715,18181,5248,18896,0.182704
-DouDizhuPoker_DefaultOrganization_20250915221401,1,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:26:15,6,1172,34,16,4,54,13349,15942,3072,29291,0.176106
-DouDizhuPoker_DefaultOrganization_20250915221401,2,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:32:23,6,1169,34,16,4,54,13782,14801,1920,28583,0.165238
-DouDizhuPoker_DefaultOrganization_20250915221401,3,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:39:55,6,1173,34,16,4,54,13892,14477,1536,28369,0.162135
-DouDizhuPoker_DefaultOrganization_20250915221401,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-15-09 22:40:18,6,0,34,16,4,54,13431,821,768,14252,0.024999
-DouDizhuPoker_DefaultOrganization_20250915221401,5,Reflection,Chief Executive Officer,Counselor,2025-15-09 22:40:34,6,1173,34,16,4,54,13793,624,576,14417,0.023481
-EpisodeChooseYourStory_DefaultOrganization_20250923172502,0,Coding,Programmer,Chief Technology Officer,2025-23-09 17:27:17,5,760,7,12,5,24,651,10439,3328,11090,0.105204
-EpisodeChooseYourStory_DefaultOrganization_20250923172502,1,CodeComplete,Programmer,Chief Technology Officer,2025-23-09 17:30:32,5,760,7,12,5,24,7026,7375,832,14401,0.082532
-EpisodeChooseYourStory_DefaultOrganization_20250923172502,2,CodeComplete,Programmer,Chief Technology Officer,2025-23-09 17:31:11,5,760,7,12,5,24,7026,7377,832,14403,0.082553
-EpisodeChooseYourStory_DefaultOrganization_20250923172502,3,CodeComplete,Programmer,Chief Technology Officer,2025-23-09 17:32:02,5,760,7,12,5,24,7022,7953,1408,14975,0.088308
-EpisodeChooseYourStory_DefaultOrganization_20250923172502,4,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 17:34:56,5,766,7,13,5,25,7249,7718,1088,14967,0.086241
-EpisodeChooseYourStory_DefaultOrganization_20250923172502,5,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 17:37:52,5,766,7,13,5,25,7365,7397,768,14762,0.083176
-EpisodeChooseYourStory_DefaultOrganization_20250923172502,6,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 17:40:26,5,778,7,13,5,25,7475,7446,704,14921,0.083804
-FibonacciNumbers_DefaultOrganization_20250908121632,0,Coding,Programmer,Chief Technology Officer,2025-08-09 12:17:43,3,245,2,1,2,5,564,4737,2048,5301,0.048075
-FibonacciNumbers_DefaultOrganization_20250908121632,1,CodeComplete,Programmer,Chief Technology Officer,2025-08-09 12:19:01,3,245,2,1,2,5,2847,3603,1152,6450,0.039589
-FibonacciNumbers_DefaultOrganization_20250908121632,2,CodeComplete,Programmer,Chief Technology Officer,2025-08-09 12:20:19,3,245,2,1,2,5,5503,3219,768,8722,0.039069
-FibonacciNumbers_DefaultOrganization_20250908121632,3,CodeComplete,Programmer,Chief Technology Officer,2025-08-09 12:21:25,3,245,2,1,2,5,2843,3411,960,6254,0.037664
-FibonacciNumbers_DefaultOrganization_20250908121632,4,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 12:23:34,3,246,2,1,2,5,3036,3481,1024,6517,0.038605
-FibonacciNumbers_DefaultOrganization_20250908121632,5,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 12:25:46,3,251,2,1,2,5,3031,3471,960,6502,0.038499
-FibonacciNumbers_DefaultOrganization_20250908121632,6,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 12:27:57,3,251,2,1,2,5,2922,3727,1216,6649,0.040923
-FibonacciNumbers_DefaultOrganization_20250908121632,7,EnvironmentDoc,Programmer,Chief Technology Officer,2025-08-09 12:28:19,3,0,2,1,2,5,2852,953,896,3805,0.013095
-FibonacciNumbers_DefaultOrganization_20250908121632,8,Reflection,Chief Executive Officer,Counselor,2025-08-09 12:28:45,3,251,2,1,2,5,3143,1081,1024,4224,0.014739
-FlappyBird_DefaultOrganization_20250910134406,0,Coding,Programmer,Chief Technology Officer,2025-10-09 13:47:56,4,408,4,4,5,13,677,6786,2496,7463,0.068706
-FlappyBird_DefaultOrganization_20250910134406,1,CodeComplete,Programmer,Chief Technology Officer,2025-10-09 13:50:19,4,409,4,4,6,14,4396,4919,1024,9315,0.054685
-FlappyBird_DefaultOrganization_20250910134406,2,CodeComplete,Programmer,Chief Technology Officer,2025-10-09 13:52:17,4,409,4,4,6,14,4403,4983,1088,9386,0.055334
-FlappyBird_DefaultOrganization_20250910134406,3,CodeComplete,Programmer,Chief Technology Officer,2025-10-09 13:54:06,4,409,4,4,6,14,4399,4791,896,9190,0.053409
-FlappyBird_DefaultOrganization_20250910134406,4,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 13:57:55,4,409,4,4,6,14,4418,5175,1280,9593,0.057272
-FlappyBird_DefaultOrganization_20250910134406,5,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 14:01:20,4,417,5,4,6,15,4761,5246,1280,10007,0.058411
-FlappyBird_DefaultOrganization_20250910134406,6,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 14:05:28,4,419,6,4,6,16,4767,5585,1600,10352,0.061809
-FlappyBird_DefaultOrganization_20250910134406,7,TestModification,Programmer,Software Test Engineer,2025-10-09 14:08:06,4,454,6,4,5,15,4531,7614,3456,12145,0.081804
-GoldMiner_DefaultOrganization_20250923182344,0,Coding,Programmer,Chief Technology Officer,2025-23-09 18:26:14,3,424,8,2,4,14,697,9679,4544,10376,0.097661
-GoldMiner_DefaultOrganization_20250923182344,1,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 18:29:16,3,426,8,2,4,14,5734,7011,1920,12745,0.077277
-GoldMiner_DefaultOrganization_20250923182344,2,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 18:32:03,3,432,8,2,4,14,5823,7476,2304,13299,0.082039
-GoldMiner_DefaultOrganization_20250923182344,3,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 18:36:23,3,486,11,2,4,17,6192,9147,3520,15339,0.09921
-GoldMiner_DefaultOrganization_20250923182344,4,TestModification,Programmer,Software Test Engineer,2025-23-09 18:37:44,3,505,11,2,4,17,6167,4768,2048,10935,0.055389
-GoldMiner_DefaultOrganization_20250923182344,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-23-09 18:38:04,3,0,11,2,4,17,6298,681,640,6979,0.014683
-GoldMiner_DefaultOrganization_20250923182344,6,Reflection,Chief Executive Officer,Counselor,2025-23-09 18:38:19,3,505,11,2,4,17,6639,621,576,7260,0.014509
-Gomoku_DefaultOrganization_20250908223552,0,Coding,Programmer,Chief Technology Officer,2025-08-09 22:37:46,1,468,0,0,0,0,635,8269,3072,8904,0.083484
-Gomoku_DefaultOrganization_20250908223552,1,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 22:41:47,1,468,0,0,0,0,5067,7729,3136,12796,0.083624
-Gomoku_DefaultOrganization_20250908223552,2,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 22:44:54,1,468,0,0,0,0,5230,6321,1728,11551,0.069748
-Gomoku_DefaultOrganization_20250908223552,3,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 22:49:04,1,468,0,0,0,0,5282,6001,1408,11283,0.066613
-Gomoku_DefaultOrganization_20250908223552,4,TestModification,Programmer,Software Test Engineer,2025-08-09 22:50:10,2,478,2,0,2,4,5096,3337,2112,8433,0.03974
-Gomoku_DefaultOrganization_20250908223552,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-08-09 22:50:29,2,0,2,0,2,4,5070,700,640,5770,0.013338
-Mastermind_DefaultOrganization_20250924001636,0,Coding,Programmer,Chief Technology Officer,2025-24-09 00:19:38,3,142,4,3,1,8,675,7931,2944,8606,0.080154
-Mastermind_DefaultOrganization_20250924001636,1,CodeReviewModification,Programmer,Code Reviewer,2025-24-09 00:21:51,3,294,3,1,1,5,3505,4242,1344,7747,0.046801
-Mastermind_DefaultOrganization_20250924001636,2,CodeReviewModification,Programmer,Code Reviewer,2025-24-09 00:24:04,3,300,3,1,1,5,3625,4180,1216,7805,0.046331
-Mastermind_DefaultOrganization_20250924001636,3,CodeReviewModification,Programmer,Code Reviewer,2025-24-09 00:25:52,3,409,6,1,1,8,3486,7447,3264,10933,0.078827
-Mastermind_DefaultOrganization_20250924001636,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-24-09 00:26:13,3,0,6,1,1,8,4634,883,768,5517,0.014623
-Mastermind_DefaultOrganization_20250924001636,5,Reflection,Chief Executive Officer,Counselor,2025-24-09 00:26:35,3,409,6,1,1,8,5038,1011,896,6049,0.016407
-Minesweeper_DefaultOrganization_20250913230501,0,Coding,Programmer,Chief Technology Officer,2025-13-09 23:07:33,3,418,13,5,1,19,699,6407,2048,7106,0.064944
-Minesweeper_DefaultOrganization_20250913230501,1,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 23:10:13,3,415,13,5,1,19,5166,5951,1792,11117,0.065967
-Minesweeper_DefaultOrganization_20250913230501,2,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 23:12:52,3,422,13,5,1,19,5029,4962,704,9991,0.055906
-Minesweeper_DefaultOrganization_20250913230501,3,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 23:17:42,3,429,13,5,1,19,5227,6157,1792,11384,0.068104
-Minesweeper_DefaultOrganization_20250913230501,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-13-09 23:18:00,3,0,13,5,1,19,4841,769,704,5610,0.013741
-Minesweeper_DefaultOrganization_20250913230501,5,Reflection,Chief Executive Officer,Counselor,2025-13-09 23:18:23,3,429,13,5,1,19,5207,1217,1152,6424,0.018679
-MonopolyGo_DefaultOrganization_20250918164257,0,Coding,Programmer,Chief Technology Officer,2025-18-09 16:48:33,4,738,11,7,2,20,665,12567,4288,13232,0.126501
-MonopolyGo_DefaultOrganization_20250918164257,1,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 16:54:11,4,735,11,8,2,21,8945,10238,1984,19183,0.113561
-MonopolyGo_DefaultOrganization_20250918164257,2,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 17:00:23,4,744,11,8,2,21,9242,9904,1536,19146,0.110593
-MonopolyGo_DefaultOrganization_20250918164257,3,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 17:07:57,4,813,13,8,2,23,9418,13157,4096,22575,0.143342
-MonopolyGo_DefaultOrganization_20250918164257,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-18-09 17:08:22,4,0,13,8,2,23,9487,973,896,10460,0.021589
-MonopolyGo_DefaultOrganization_20250918164257,5,Reflection,Chief Executive Officer,Counselor,2025-18-09 17:08:39,4,813,13,8,2,23,9848,653,576,10501,0.01884
-Pong_DefaultOrganization_20250914182514,0,Coding,Programmer,Chief Technology Officer,2025-14-09 18:27:35,4,486,3,4,3,10,671,7669,2496,8340,0.077529
-Pong_DefaultOrganization_20250914182514,1,CodeReviewModification,Programmer,Code Reviewer,2025-14-09 18:30:50,4,483,0,3,1,4,5563,5896,1280,11459,0.065914
-Pong_DefaultOrganization_20250914182514,2,CodeReviewModification,Programmer,Code Reviewer,2025-14-09 18:34:05,4,483,3,4,3,10,5364,6087,1472,11451,0.067575
-Pong_DefaultOrganization_20250914182514,3,CodeReviewModification,Programmer,Code Reviewer,2025-14-09 18:37:05,4,483,0,3,1,4,5314,5256,640,10570,0.059203
-Pong_DefaultOrganization_20250914182514,4,TestModification,Programmer,Software Test Engineer,2025-14-09 18:37:59,4,491,3,4,3,10,5139,4230,1856,9369,0.048724
-ReversiOthello_DefaultOrganization_20250917002342,0,Coding,Programmer,Chief Technology Officer,2025-17-09 00:25:10,1,390,0,0,0,0,693,7661,2624,8354,0.077476
-ReversiOthello_DefaultOrganization_20250917002342,1,CodeReviewModification,Programmer,Code Reviewer,2025-17-09 00:27:25,1,395,0,0,0,0,5233,5748,1344,10981,0.064021
-ReversiOthello_DefaultOrganization_20250917002342,2,CodeReviewModification,Programmer,Code Reviewer,2025-17-09 00:29:41,1,397,0,0,0,0,5137,5987,1600,11124,0.066291
-ReversiOthello_DefaultOrganization_20250917002342,3,CodeReviewModification,Programmer,Code Reviewer,2025-17-09 00:32:16,1,397,0,0,0,0,5201,6368,1984,11569,0.070181
-ReversiOthello_DefaultOrganization_20250917002342,4,TestModification,Programmer,Software Test Engineer,2025-17-09 00:33:17,2,397,4,1,1,6,4918,3712,1344,8630,0.043268
-SnakeGame_DefaultOrganization_20250910123142,0,Coding,Programmer,Chief Technology Officer,2025-10-09 12:35:18,6,452,4,6,3,13,687,6563,2176,7250,0.066489
-SnakeGame_DefaultOrganization_20250910123142,1,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 12:40:42,6,458,5,6,3,14,4726,5173,1216,9899,0.057638
-SnakeGame_DefaultOrganization_20250910123142,2,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 12:45:21,6,466,5,6,3,14,4820,5189,1152,10009,0.057915
-SnakeGame_DefaultOrganization_20250910123142,3,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 12:50:06,6,497,6,6,4,16,4571,7212,2688,11783,0.077834
-SnakeGame_DefaultOrganization_20250910123142,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-10-09 12:51:33,6,0,6,6,4,16,4988,599,576,5587,0.012225
-SnakeGame_DefaultOrganization_20250910123142,5,Reflection,Chief Executive Officer,Counselor,2025-10-09 12:51:56,6,497,6,6,4,16,5306,663,640,5969,0.013262
-StrandsGame_DefaultOrganization_20250918115617,0,Coding,Programmer,Chief Technology Officer,2025-18-09 11:59:44,2,483,3,7,3,13,655,12456,3840,13111,0.125379
-StrandsGame_DefaultOrganization_20250918115617,1,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 12:04:57,2,491,3,7,3,13,9311,10573,1984,19884,0.117369
-StrandsGame_DefaultOrganization_20250918115617,2,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 12:11:18,2,491,3,7,3,13,9448,10920,2240,20368,0.12101
-StrandsGame_DefaultOrganization_20250918115617,3,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 12:18:29,2,490,3,7,3,13,9415,12089,3456,21504,0.132659
-StrandsGame_DefaultOrganization_20250918115617,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-18-09 12:19:15,2,0,3,7,3,13,9058,1317,1280,10375,0.024493
-StrandsGame_DefaultOrganization_20250918115617,5,Reflection,Chief Executive Officer,Counselor,2025-18-09 12:19:34,2,490,3,7,3,13,9374,741,704,10115,0.019127
-StrandsNYT_DefaultOrganization_20250915172200,0,Coding,Programmer,Chief Technology Officer,2025-15-09 17:26:04,1,472,0,0,0,0,849,17789,11264,18638,0.178951
-StrandsNYT_DefaultOrganization_20250915172200,1,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:29:00,5,474,9,2,1,12,7068,7574,1536,14642,0.084575
-StrandsNYT_DefaultOrganization_20250915172200,2,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:31:43,6,565,9,5,2,16,7332,11073,3136,18405,0.119895
-StrandsNYT_DefaultOrganization_20250915172200,3,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:37:23,6,565,9,8,4,21,11084,12875,2624,23959,0.142605
-StrandsNYT_DefaultOrganization_20250915172200,4,TestModification,Programmer,Software Test Engineer,2025-15-09 17:38:18,6,571,9,8,7,24,10844,1849,832,12693,0.032045
-StrandsNYT_DefaultOrganization_20250915172200,5,TestModification,Programmer,Software Test Engineer,2025-15-09 17:40:39,6,580,9,8,7,24,10993,4875,1344,15868,0.062491
-StrandsNYT_DefaultOrganization_20250915172200,6,Reflection,Chief Executive Officer,Counselor,2025-15-09 17:41:20,6,580,9,8,7,24,11379,794,768,12173,0.022164
-Sudoku_DefaultOrganization_20250912104519,0,Coding,Programmer,Chief Technology Officer,2025-12-09 10:48:51,2,362,7,4,2,13,667,11030,3008,11697,0.111134
-Sudoku_DefaultOrganization_20250912104519,1,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 10:52:53,3,362,7,5,4,16,8242,9967,2560,18209,0.109973
-Sudoku_DefaultOrganization_20250912104519,2,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 10:57:11,3,362,7,5,4,16,8283,10322,2880,18605,0.113574
-Sudoku_DefaultOrganization_20250912104519,3,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 11:01:12,3,362,7,5,4,16,8302,10386,2944,18688,0.114237
-Sudoku_DefaultOrganization_20250912104519,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-12-09 11:01:42,3,0,7,5,4,16,7884,728,704,8612,0.017135
-Sudoku_DefaultOrganization_20250912104519,5,Reflection,Chief Executive Officer,Counselor,2025-12-09 11:02:08,3,362,7,5,4,16,8193,984,960,9177,0.020081
-Tetris_DefaultOrganization_20250916220733,0,Coding,Programmer,Chief Technology Officer,2025-16-09 22:33:37,0,0,0,0,0,0,691,11790,2176,12481,0.118764
-Tetris_DefaultOrganization_20250916220733,1,CodeReviewModification,Programmer,Code Reviewer,2025-16-09 22:38:53,0,0,0,0,0,0,9820,10927,1792,20747,0.121545
-Tetris_DefaultOrganization_20250916220733,2,CodeReviewModification,Programmer,Code Reviewer,2025-16-09 22:41:29,0,0,0,0,0,0,10066,10543,1408,20609,0.118013
-Tetris_DefaultOrganization_20250916220733,3,CodeReviewModification,Programmer,Code Reviewer,2025-16-09 22:46:13,0,0,0,0,0,0,10300,10405,1280,20705,0.116925
-TextBasedSpaceInvaders_DefaultOrganization_20250923235402,0,Coding,Programmer,Chief Technology Officer,2025-23-09 23:56:33,4,389,6,4,3,13,663,7882,3136,8545,0.079649
-TextBasedSpaceInvaders_DefaultOrganization_20250923235402,1,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 23:59:05,4,389,6,4,3,13,4685,5043,1024,9728,0.056286
-TextBasedSpaceInvaders_DefaultOrganization_20250923235402,2,CodeReviewModification,Programmer,Code Reviewer,2025-24-09 00:01:44,4,388,6,4,3,13,4712,4706,704,9418,0.05295
-TextBasedSpaceInvaders_DefaultOrganization_20250923235402,3,CodeReviewModification,Programmer,Code Reviewer,2025-24-09 00:04:10,4,392,5,5,3,13,4915,7050,3008,11965,0.076644
-TextBasedSpaceInvaders_DefaultOrganization_20250923235402,4,TestModification,Programmer,Software Test Engineer,2025-24-09 00:04:50,4,403,5,5,3,13,4562,1837,1664,6399,0.024073
-TextBasedSpaceInvaders_DefaultOrganization_20250923235402,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-24-09 00:05:04,4,0,5,5,3,13,4566,600,576,5166,0.011708
-TextBasedSpaceInvaders_DefaultOrganization_20250923235402,6,Reflection,Chief Executive Officer,Counselor,2025-24-09 00:05:20,4,403,5,5,3,13,4873,728,704,5601,0.013371
-TheCrossword_DefaultOrganization_20250912175428,0,Coding,Programmer,Chief Technology Officer,2025-12-09 17:58:20,5,522,12,4,4,20,635,13873,8832,14508,0.139524
-TheCrossword_DefaultOrganization_20250912175428,1,CodeComplete,Programmer,Chief Technology Officer,2025-12-09 18:00:33,5,522,12,4,4,20,5511,6832,1792,12343,0.075209
-TheCrossword_DefaultOrganization_20250912175428,2,CodeComplete,Programmer,Chief Technology Officer,2025-12-09 18:02:45,5,524,12,4,4,20,5511,6595,1536,12106,0.072839
-TheCrossword_DefaultOrganization_20250912175428,3,CodeComplete,Programmer,Chief Technology Officer,2025-12-09 18:05:06,5,524,12,4,4,20,5528,6018,960,11546,0.06709
-TheCrossword_DefaultOrganization_20250912175428,4,CodeComplete,Programmer,Chief Technology Officer,2025-12-09 18:07:05,5,524,12,4,4,20,5528,7041,1984,12569,0.07732
-TheCrossword_DefaultOrganization_20250912175428,5,CodeComplete,Programmer,Chief Technology Officer,2025-12-09 18:09:14,5,524,12,4,4,20,5528,6850,1792,12378,0.07541
-TheCrossword_DefaultOrganization_20250912175428,6,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 18:14:01,5,573,13,6,4,23,6011,7107,1408,13118,0.078584
-TheCrossword_DefaultOrganization_20250912175428,7,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 18:17:19,5,575,13,6,4,23,6180,8134,2432,14314,0.089065
-TheCrossword_DefaultOrganization_20250912175428,8,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 18:20:50,5,601,15,7,4,26,6563,7325,1344,13888,0.081454
-TheCrossword_DefaultOrganization_20250912175428,9,EnvironmentDoc,Programmer,Chief Technology Officer,2025-12-09 18:21:12,5,0,15,7,4,26,6392,853,768,7245,0.01652
-TicTacToe_DefaultOrganization_20250913084721,0,Coding,Programmer,Chief Technology Officer,2025-13-09 08:48:15,4,307,5,2,2,9,659,6101,2752,6760,0.061834
-TicTacToe_DefaultOrganization_20250913084721,1,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 08:50:04,4,307,5,2,2,9,3515,4545,1536,8060,0.049844
-TicTacToe_DefaultOrganization_20250913084721,2,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 08:52:03,4,307,5,2,2,9,3515,4545,1536,8060,0.049844
-TicTacToe_DefaultOrganization_20250913084721,3,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 08:55:09,4,361,6,2,2,10,3515,7197,3584,10712,0.076364
-Tiny Rouge_DefaultOrganization_20250913090722,0,Coding,Programmer,Chief Technology Officer,2025-13-09 09:09:08,6,519,9,5,5,19,827,9575,3648,10402,0.096784
-Tiny Rouge_DefaultOrganization_20250913090722,1,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 09:12:16,6,518,9,6,5,20,6459,6896,1600,13355,0.077034
-Tiny Rouge_DefaultOrganization_20250913090722,2,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 09:15:56,6,526,9,6,5,20,6333,6915,1472,13248,0.077066
-Tiny Rouge_DefaultOrganization_20250913090722,3,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 09:19:48,6,528,1,5,4,10,6515,6723,1216,13238,0.075374
-TriviaQuiz_DefaultOrganization_20250913115336,0,Coding,Programmer,Chief Technology Officer,2025-13-09 11:55:04,4,698,14,7,3,24,653,9852,2880,10505,0.099336
-TriviaQuiz_DefaultOrganization_20250913115336,1,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 11:58:09,4,777,18,7,3,28,7550,8739,1536,16289,0.096827
-TriviaQuiz_DefaultOrganization_20250913115336,2,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 12:02:18,4,778,18,7,3,28,7984,9508,2304,17492,0.10506
-TriviaQuiz_DefaultOrganization_20250913115336,3,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 12:05:14,4,784,17,7,3,27,8065,8741,1472,16806,0.097491
-TriviaQuiz_DefaultOrganization_20250913115336,4,TestModification,Programmer,Software Test Engineer,2025-13-09 12:07:33,4,784,17,7,3,27,8060,4865,832,12925,0.058725
-TriviaQuiz_DefaultOrganization_20250913115336,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-13-09 12:08:01,4,0,17,7,3,27,7698,904,832,8602,0.018663
-TriviaQuiz_DefaultOrganization_20250913115336,6,Reflection,Chief Executive Officer,Counselor,2025-13-09 12:08:20,4,784,17,7,3,27,8048,1011,960,9059,0.02017
-Wordle_DefaultOrganization_20250913205401,0,Coding,Programmer,Chief Technology Officer,2025-13-09 20:58:07,5,443,4,6,2,12,813,8480,3264,9293,0.085816
-Wordle_DefaultOrganization_20250913205401,1,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 21:05:05,5,462,4,6,2,12,5563,6499,1664,12062,0.071944
-Wordle_DefaultOrganization_20250913205401,2,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 21:13:01,5,463,4,6,2,12,5492,7550,2688,13042,0.082365
-Wordle_DefaultOrganization_20250913205401,3,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 21:18:13,5,486,5,6,2,13,5910,7400,2048,13310,0.081388
-Wordle_DefaultOrganization_20250913205401,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-13-09 21:18:29,5,0,5,6,2,13,5939,514,448,6453,0.012564
-Wordle_DefaultOrganization_20250913205401,5,Reflection,Chief Executive Officer,Counselor,2025-13-09 21:18:51,5,486,5,6,2,13,6363,835,768,7198,0.016304
+project,turn_index,phase,role,interlocutor,timestamp,py_files,code_lines,structural_smells,code_smells,architectural_smells,total_smells,dpy_implementation_smells,dpy_design_smells,dpy_architecture_smells,dpy_total_smells,tokens_prompt,tokens_completion,tokens_reasoning,tokens_total,cost_usd,refactored_py_files,refactored_structural_smells,refactored_code_smells,refactored_architectural_smells,refactored_total_smells,delta_ref_vs_baseline_structural,delta_ref_vs_baseline_code,delta_ref_vs_baseline_architectural,delta_ref_vs_baseline_total,delta_ref_vs_postreview_structural,delta_ref_vs_postreview_code,delta_ref_vs_postreview_architectural,delta_ref_vs_postreview_total,refactored_dpy_implementation_smells,refactored_dpy_design_smells,refactored_dpy_architecture_smells,refactored_dpy_total_smells,delta_ref_vs_baseline_dpy_implementation,delta_ref_vs_baseline_dpy_design,delta_ref_vs_baseline_dpy_architecture,delta_ref_vs_baseline_dpy_total,delta_ref_vs_postreview_dpy_implementation,delta_ref_vs_postreview_dpy_design,delta_ref_vs_postreview_dpy_architecture,delta_ref_vs_postreview_dpy_total
+2048_DefaultOrganization_20250908205825,0,Coding,Programmer,Chief Technology Officer,2025-08-09 21:00:05,2,260,3,6,2,11,16,0,0,16,691,8576,3136,9267,0.086624,3,3,2,3,8,0,-4,1,-3,0,-7,-2,-9,43,1,0,44,27,1,0,28,21,1,0,22
+2048_DefaultOrganization_20250908205825,1,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 21:02:59,3,260,3,9,5,17,22,0,0,22,5790,7825,2880,13615,0.085487,3,3,2,3,8,0,-4,1,-3,0,-7,-2,-9,43,1,0,44,27,1,0,28,21,1,0,22
+2048_DefaultOrganization_20250908205825,2,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 21:05:51,3,260,3,9,5,17,22,0,0,22,5843,7293,2432,13136,0.080234,3,3,2,3,8,0,-4,1,-3,0,-7,-2,-9,43,1,0,44,27,1,0,28,21,1,0,22
+2048_DefaultOrganization_20250908205825,3,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 21:09:22,3,260,3,9,5,17,22,0,0,22,5399,7486,2624,12885,0.081609,3,3,2,3,8,0,-4,1,-3,0,-7,-2,-9,43,1,0,44,27,1,0,28,21,1,0,22
+2048_DefaultOrganization_20250908205825,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-08-09 21:09:41,3,0,3,9,5,17,22,0,0,22,5330,600,576,5930,0.012663,3,3,2,3,8,0,-4,1,-3,0,-7,-2,-9,43,1,0,44,27,1,0,28,21,1,0,22
+BudgetTracker_DefaultOrganization_20250909155642,0,Coding,Programmer,Chief Technology Officer,2025-09-09 15:59:09,5,705,13,3,7,23,17,1,0,18,558,10159,2432,10717,0.102288,5,13,2,5,20,0,-1,-2,-3,0,-1,-2,-3,54,2,0,56,37,1,0,38,34,1,0,35
+BudgetTracker_DefaultOrganization_20250909155642,1,CodeComplete,Programmer,Chief Technology Officer,2025-09-09 16:02:13,5,705,13,3,7,23,17,1,0,18,7919,9065,1536,16984,0.100549,5,13,2,5,20,0,-1,-2,-3,0,-1,-2,-3,54,2,0,56,37,1,0,38,34,1,0,35
+BudgetTracker_DefaultOrganization_20250909155642,2,CodeComplete,Programmer,Chief Technology Officer,2025-09-09 16:04:46,5,705,13,3,7,23,17,1,0,18,7919,9004,1472,16923,0.099939,5,13,2,5,20,0,-1,-2,-3,0,-1,-2,-3,54,2,0,56,37,1,0,38,34,1,0,35
+BudgetTracker_DefaultOrganization_20250909155642,3,CodeComplete,Programmer,Chief Technology Officer,2025-09-09 16:07:35,5,705,13,3,7,23,17,1,0,18,7915,8681,1152,16596,0.096704,5,13,2,5,20,0,-1,-2,-3,0,-1,-2,-3,54,2,0,56,37,1,0,38,34,1,0,35
+BudgetTracker_DefaultOrganization_20250909155642,4,CodeReviewModification,Programmer,Code Reviewer,2025-09-09 16:11:36,5,706,13,3,7,23,18,1,0,19,8412,9194,1600,17606,0.102455,5,13,2,5,20,0,-1,-2,-3,0,-1,-2,-3,54,2,0,56,37,1,0,38,34,1,0,35
+BudgetTracker_DefaultOrganization_20250909155642,5,CodeReviewModification,Programmer,Code Reviewer,2025-09-09 16:15:09,5,733,13,3,7,23,20,1,0,21,8570,8295,576,16865,0.093662,5,13,2,5,20,0,-1,-2,-3,0,-1,-2,-3,54,2,0,56,37,1,0,38,34,1,0,35
+BudgetTracker_DefaultOrganization_20250909155642,6,CodeReviewModification,Programmer,Code Reviewer,2025-09-09 16:19:36,5,734,13,3,7,23,20,1,0,21,8277,8828,1088,17105,0.098626,5,13,2,5,20,0,-1,-2,-3,0,-1,-2,-3,54,2,0,56,37,1,0,38,34,1,0,35
+CandyCrush_DefaultOrganization_20250923221010,0,Coding,Programmer,Chief Technology Officer,2025-23-09 22:12:50,0,0,0,0,0,0,0,0,0,0,673,10852,4096,11525,0.109361,,,,,,,,,,,,,,,,,,,,,,,,,
+CandyCrush_DefaultOrganization_20250923221010,1,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 22:17:51,0,0,0,0,0,0,0,0,0,0,6998,7946,1728,14944,0.088208,,,,,,,,,,,,,,,,,,,,,,,,,
+CandyCrush_DefaultOrganization_20250923221010,2,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 22:22:38,0,0,0,0,0,0,0,0,0,0,6986,8657,2304,15643,0.095303,,,,,,,,,,,,,,,,,,,,,,,,,
+CandyCrush_DefaultOrganization_20250923221010,3,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 22:29:25,0,0,0,0,0,0,0,0,0,0,7549,8267,1664,15816,0.092106,,,,,,,,,,,,,,,,,,,,,,,,,
+Checkers_DefaultOrganization_20250911143857,0,Coding,Programmer,Chief Technology Officer,2025-11-09 14:42:17,7,515,17,2,7,26,42,0,0,42,649,10454,4288,11103,0.105351,7,12,4,6,22,-5,2,-1,-4,-5,2,-1,-4,92,3,0,95,50,3,0,53,51,3,0,54
+Checkers_DefaultOrganization_20250911143857,1,CodeComplete,Programmer,Chief Technology Officer,2025-11-09 14:44:19,7,528,17,2,7,26,41,0,0,41,5980,6992,1344,12972,0.077395,7,12,4,6,22,-5,2,-1,-4,-5,2,-1,-4,92,3,0,95,50,3,0,53,51,3,0,54
+Checkers_DefaultOrganization_20250911143857,2,CodeComplete,Programmer,Chief Technology Officer,2025-11-09 14:47:08,7,528,17,2,7,26,41,0,0,41,6131,7183,1536,13314,0.079494,7,12,4,6,22,-5,2,-1,-4,-5,2,-1,-4,92,3,0,95,50,3,0,53,51,3,0,54
+Checkers_DefaultOrganization_20250911143857,3,CodeComplete,Programmer,Chief Technology Officer,2025-11-09 14:49:54,7,528,17,2,7,26,41,0,0,41,6124,6834,1216,12958,0.075995,7,12,4,6,22,-5,2,-1,-4,-5,2,-1,-4,92,3,0,95,50,3,0,53,51,3,0,54
+Checkers_DefaultOrganization_20250911143857,4,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 14:57:03,7,528,17,2,7,26,41,0,0,41,6114,8828,3200,14942,0.095922,7,12,4,6,22,-5,2,-1,-4,-5,2,-1,-4,92,3,0,95,50,3,0,53,51,3,0,54
+Checkers_DefaultOrganization_20250911143857,5,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 15:03:28,7,529,17,2,7,26,41,0,0,41,6124,8171,2496,14295,0.089365,7,12,4,6,22,-5,2,-1,-4,-5,2,-1,-4,92,3,0,95,50,3,0,53,51,3,0,54
+Checkers_DefaultOrganization_20250911143857,6,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 15:07:36,7,531,17,2,7,26,41,0,0,41,6550,7913,2240,14463,0.087317,7,12,4,6,22,-5,2,-1,-4,-5,2,-1,-4,92,3,0,95,50,3,0,53,51,3,0,54
+Checkers_DefaultOrganization_20250911143857,7,TestModification,Programmer,Software Test Engineer,2025-11-09 15:09:42,7,654,17,4,8,29,47,0,0,47,6186,4524,2304,10710,0.052973,7,12,4,6,22,-5,2,-1,-4,-5,2,-1,-4,92,3,0,95,50,3,0,53,51,3,0,54
+Checkers_DefaultOrganization_20250911143857,8,EnvironmentDoc,Programmer,Chief Technology Officer,2025-11-09 15:10:05,7,0,17,4,8,29,47,0,0,47,7247,853,832,8100,0.017589,7,12,4,6,22,-5,2,-1,-4,-5,2,-1,-4,92,3,0,95,50,3,0,53,51,3,0,54
+Checkers_DefaultOrganization_20250911143857,9,Reflection,Chief Executive Officer,Counselor,2025-11-09 15:10:19,7,654,17,4,8,29,47,0,0,47,7544,661,640,8205,0.01604,7,12,4,6,22,-5,2,-1,-4,-5,2,-1,-4,92,3,0,95,50,3,0,53,51,3,0,54
+Chess_DefaultOrganization_20250908153724,0,Coding,Programmer,Chief Technology Officer,2025-08-09 15:43:16,2,729,4,3,3,10,12,0,0,12,719,15524,5760,16243,0.156139,4,8,6,6,20,4,3,3,10,4,3,3,10,51,1,0,52,39,1,0,40,39,1,0,40
+Chess_DefaultOrganization_20250908153724,1,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 15:50:30,2,764,4,5,3,12,15,0,0,15,9224,12644,3200,21868,0.13797,4,8,6,6,20,4,3,3,10,4,3,3,10,51,1,0,52,39,1,0,40,39,1,0,40
+Chess_DefaultOrganization_20250908153724,2,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 15:55:28,2,764,4,3,3,10,12,0,0,12,9823,11153,1984,20976,0.123809,4,8,6,6,20,4,3,3,10,4,3,3,10,51,1,0,52,39,1,0,40,39,1,0,40
+Chess_DefaultOrganization_20250908153724,3,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 16:01:25,2,772,4,3,3,10,12,0,0,12,9874,12062,2816,21936,0.132963,4,8,6,6,20,4,3,3,10,4,3,3,10,51,1,0,52,39,1,0,40,39,1,0,40
+Chess_DefaultOrganization_20250908153724,4,TestModification,Programmer,Software Test Engineer,2025-08-09 16:05:11,4,684,14,8,5,27,99,3,0,102,9150,10506,3392,19656,0.116498,4,8,6,6,20,4,3,3,10,4,3,3,10,51,1,0,52,39,1,0,40,39,1,0,40
+Chess_DefaultOrganization_20250908153724,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-08-09 16:05:42,4,0,14,8,5,27,99,3,0,102,8255,805,768,9060,0.018369,4,8,6,6,20,4,3,3,10,4,3,3,10,51,1,0,52,39,1,0,40,39,1,0,40
+Chess_DefaultOrganization_20250908153724,6,Reflection,Chief Executive Officer,Counselor,2025-08-09 16:06:05,4,684,14,8,5,27,99,3,0,102,8603,945,896,9548,0.020204,4,8,6,6,20,4,3,3,10,4,3,3,10,51,1,0,52,39,1,0,40,39,1,0,40
+ConnectFour_DefaultOrganization_20250915215741,0,Coding,Programmer,Chief Technology Officer,2025-15-09 21:59:43,3,339,4,2,1,7,26,0,0,26,695,6629,3008,7324,0.067159,3,5,3,1,9,1,1,0,2,0,1,0,1,31,1,0,32,5,1,0,6,3,1,0,4
+ConnectFour_DefaultOrganization_20250915215741,1,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:01:44,3,357,5,2,1,8,28,0,0,28,4158,4652,1216,8810,0.051718,3,5,3,1,9,1,1,0,2,0,1,0,1,31,1,0,32,5,1,0,6,3,1,0,4
+ConnectFour_DefaultOrganization_20250915215741,2,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:04:23,3,362,5,2,1,8,28,0,0,28,4264,5137,1664,9401,0.0567,3,5,3,1,9,1,1,0,2,0,1,0,1,31,1,0,32,5,1,0,6,3,1,0,4
+ConnectFour_DefaultOrganization_20250915215741,3,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:07:00,3,362,5,2,1,8,28,0,0,28,4014,4560,1088,8574,0.050618,3,5,3,1,9,1,1,0,2,0,1,0,1,31,1,0,32,5,1,0,6,3,1,0,4
+ConnectFour_DefaultOrganization_20250915215741,4,Reflection,Chief Executive Officer,Counselor,2025-15-09 22:07:50,3,362,5,2,1,8,28,0,0,28,4298,702,640,5000,0.012393,3,5,3,1,9,1,1,0,2,0,1,0,1,31,1,0,32,5,1,0,6,3,1,0,4
+ConnectionsNYT_DefaultOrganization_20250915165955,0,Coding,Programmer,Chief Technology Officer,2025-15-09 17:04:14,4,480,7,4,4,15,26,0,0,26,771,11494,5376,12265,0.115904,5,0,9,4,13,-7,5,0,-2,0,-8,-1,-9,38,0,0,38,12,0,0,12,9,0,0,9
+ConnectionsNYT_DefaultOrganization_20250915165955,1,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:08:04,5,200,0,12,4,16,24,0,0,24,6710,8727,3968,15437,0.095658,5,0,9,4,13,-7,5,0,-2,0,-8,-1,-9,38,0,0,38,12,0,0,12,9,0,0,9
+ConnectionsNYT_DefaultOrganization_20250915165955,2,CodeReviewComment,Code Reviewer,Programmer,2025-15-09 17:10:03,5,0,0,10,4,14,19,0,0,19,3206,5002,2944,8208,0.054028,5,0,9,4,13,-7,5,0,-2,0,-8,-1,-9,38,0,0,38,12,0,0,12,9,0,0,9
+ConnectionsNYT_DefaultOrganization_20250915165955,3,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:12:43,5,399,0,10,4,14,19,0,0,19,5273,7816,3264,13089,0.084751,5,0,9,4,13,-7,5,0,-2,0,-8,-1,-9,38,0,0,38,12,0,0,12,9,0,0,9
+ConnectionsNYT_DefaultOrganization_20250915165955,4,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:16:06,5,399,0,17,5,22,29,0,0,29,5476,6052,1600,11528,0.067365,5,0,9,4,13,-7,5,0,-2,0,-8,-1,-9,38,0,0,38,12,0,0,12,9,0,0,9
+ConnectionsNYT_DefaultOrganization_20250915165955,5,TestModification,Programmer,Software Test Engineer,2025-15-09 17:17:39,5,478,0,10,5,15,20,0,0,20,5026,4768,1984,9794,0.053962,5,0,9,4,13,-7,5,0,-2,0,-8,-1,-9,38,0,0,38,12,0,0,12,9,0,0,9
+ConnectionsNYT_DefaultOrganization_20250915165955,6,Reflection,Chief Executive Officer,Counselor,2025-15-09 17:18:08,5,478,0,10,5,15,20,0,0,20,6213,984,960,7197,0.017606,5,0,9,4,13,-7,5,0,-2,0,-8,-1,-9,38,0,0,38,12,0,0,12,9,0,0,9
+DetectPalindromes_DefaultOrganization_20250911160644,0,Coding,Programmer,Chief Technology Officer,2025-11-09 16:08:52,5,295,5,2,3,10,17,0,0,17,566,8685,3456,9251,0.087558,5,0,2,1,3,-5,0,-2,-7,-4,-3,-3,-10,32,0,0,32,15,0,0,15,10,0,0,10
+DetectPalindromes_DefaultOrganization_20250911160644,1,CodeReviewComment,Code Reviewer,Programmer,2025-11-09 16:10:41,5,0,4,3,2,9,15,0,0,15,3529,4901,3520,8430,0.053421,5,0,2,1,3,-5,0,-2,-7,-4,-3,-3,-10,32,0,0,32,15,0,0,15,10,0,0,10
+DetectPalindromes_DefaultOrganization_20250911160644,2,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 16:12:42,5,425,4,3,2,9,15,0,0,15,4920,5830,1536,10750,0.06445,5,0,2,1,3,-5,0,-2,-7,-4,-3,-3,-10,32,0,0,32,15,0,0,15,10,0,0,10
+DetectPalindromes_DefaultOrganization_20250911160644,3,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 16:16:03,5,436,4,3,3,10,16,0,0,16,5014,5452,1088,10466,0.060788,5,0,2,1,3,-5,0,-2,-7,-4,-3,-3,-10,32,0,0,32,15,0,0,15,10,0,0,10
+DetectPalindromes_DefaultOrganization_20250911160644,4,CodeReviewModification,Programmer,Code Reviewer,2025-11-09 16:21:21,5,486,4,5,4,13,22,0,0,22,5159,7613,2752,12772,0.082579,5,0,2,1,3,-5,0,-2,-7,-4,-3,-3,-10,32,0,0,32,15,0,0,15,10,0,0,10
+DetectPalindromes_DefaultOrganization_20250911160644,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-11-09 16:21:38,5,0,4,5,4,13,22,0,0,22,5204,960,896,6164,0.016105,5,0,2,1,3,-5,0,-2,-7,-4,-3,-3,-10,32,0,0,32,15,0,0,15,10,0,0,10
+DetectPalindromes_DefaultOrganization_20250911160644,6,Reflection,Chief Executive Officer,Counselor,2025-11-09 16:21:54,5,486,4,5,4,13,22,0,0,22,5503,820,768,6323,0.015079,5,0,2,1,3,-5,0,-2,-7,-4,-3,-3,-10,32,0,0,32,15,0,0,15,10,0,0,10
+DouDizhuPoker_DefaultOrganization_20250915221401,0,Coding,Programmer,Chief Technology Officer,2025-15-09 22:19:22,6,1139,33,17,4,54,107,1,0,108,715,18181,5248,18896,0.182704,6,4,3,2,9,-29,-14,-2,-45,-30,-13,-2,-45,30,2,0,32,-77,1,0,-76,-83,1,0,-82
+DouDizhuPoker_DefaultOrganization_20250915221401,1,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:26:15,6,1172,34,16,4,54,113,1,0,114,13349,15942,3072,29291,0.176106,6,4,3,2,9,-29,-14,-2,-45,-30,-13,-2,-45,30,2,0,32,-77,1,0,-76,-83,1,0,-82
+DouDizhuPoker_DefaultOrganization_20250915221401,2,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:32:23,6,1169,34,16,4,54,113,1,0,114,13782,14801,1920,28583,0.165238,6,4,3,2,9,-29,-14,-2,-45,-30,-13,-2,-45,30,2,0,32,-77,1,0,-76,-83,1,0,-82
+DouDizhuPoker_DefaultOrganization_20250915221401,3,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 22:39:55,6,1173,34,16,4,54,113,1,0,114,13892,14477,1536,28369,0.162135,6,4,3,2,9,-29,-14,-2,-45,-30,-13,-2,-45,30,2,0,32,-77,1,0,-76,-83,1,0,-82
+DouDizhuPoker_DefaultOrganization_20250915221401,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-15-09 22:40:18,6,0,34,16,4,54,113,1,0,114,13431,821,768,14252,0.024999,6,4,3,2,9,-29,-14,-2,-45,-30,-13,-2,-45,30,2,0,32,-77,1,0,-76,-83,1,0,-82
+DouDizhuPoker_DefaultOrganization_20250915221401,5,Reflection,Chief Executive Officer,Counselor,2025-15-09 22:40:34,6,1173,34,16,4,54,113,1,0,114,13793,624,576,14417,0.023481,6,4,3,2,9,-29,-14,-2,-45,-30,-13,-2,-45,30,2,0,32,-77,1,0,-76,-83,1,0,-82
+EpisodeChooseYourStory_DefaultOrganization_20250923172502,0,Coding,Programmer,Chief Technology Officer,2025-23-09 17:27:17,5,760,7,12,5,24,10,0,0,10,651,10439,3328,11090,0.105204,5,0,0,2,2,-7,-12,-3,-22,-7,-13,-3,-23,6,0,0,6,-4,0,0,-4,-7,0,0,-7
+EpisodeChooseYourStory_DefaultOrganization_20250923172502,1,CodeComplete,Programmer,Chief Technology Officer,2025-23-09 17:30:32,5,760,7,12,5,24,10,0,0,10,7026,7375,832,14401,0.082532,5,0,0,2,2,-7,-12,-3,-22,-7,-13,-3,-23,6,0,0,6,-4,0,0,-4,-7,0,0,-7
+EpisodeChooseYourStory_DefaultOrganization_20250923172502,2,CodeComplete,Programmer,Chief Technology Officer,2025-23-09 17:31:11,5,760,7,12,5,24,10,0,0,10,7026,7377,832,14403,0.082553,5,0,0,2,2,-7,-12,-3,-22,-7,-13,-3,-23,6,0,0,6,-4,0,0,-4,-7,0,0,-7
+EpisodeChooseYourStory_DefaultOrganization_20250923172502,3,CodeComplete,Programmer,Chief Technology Officer,2025-23-09 17:32:02,5,760,7,12,5,24,10,0,0,10,7022,7953,1408,14975,0.088308,5,0,0,2,2,-7,-12,-3,-22,-7,-13,-3,-23,6,0,0,6,-4,0,0,-4,-7,0,0,-7
+EpisodeChooseYourStory_DefaultOrganization_20250923172502,4,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 17:34:56,5,766,7,13,5,25,12,0,0,12,7249,7718,1088,14967,0.086241,5,0,0,2,2,-7,-12,-3,-22,-7,-13,-3,-23,6,0,0,6,-4,0,0,-4,-7,0,0,-7
+EpisodeChooseYourStory_DefaultOrganization_20250923172502,5,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 17:37:52,5,766,7,13,5,25,12,0,0,12,7365,7397,768,14762,0.083176,5,0,0,2,2,-7,-12,-3,-22,-7,-13,-3,-23,6,0,0,6,-4,0,0,-4,-7,0,0,-7
+EpisodeChooseYourStory_DefaultOrganization_20250923172502,6,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 17:40:26,5,778,7,13,5,25,13,0,0,13,7475,7446,704,14921,0.083804,5,0,0,2,2,-7,-12,-3,-22,-7,-13,-3,-23,6,0,0,6,-4,0,0,-4,-7,0,0,-7
+FibonacciNumbers_DefaultOrganization_20250908121632,0,Coding,Programmer,Chief Technology Officer,2025-08-09 12:17:43,3,245,2,1,2,5,9,1,0,10,564,4737,2048,5301,0.048075,3,2,0,2,4,0,-1,0,-1,0,-1,0,-1,17,2,0,19,8,1,0,9,8,1,0,9
+FibonacciNumbers_DefaultOrganization_20250908121632,1,CodeComplete,Programmer,Chief Technology Officer,2025-08-09 12:19:01,3,245,2,1,2,5,9,1,0,10,2847,3603,1152,6450,0.039589,3,2,0,2,4,0,-1,0,-1,0,-1,0,-1,17,2,0,19,8,1,0,9,8,1,0,9
+FibonacciNumbers_DefaultOrganization_20250908121632,2,CodeComplete,Programmer,Chief Technology Officer,2025-08-09 12:20:19,3,245,2,1,2,5,9,1,0,10,5503,3219,768,8722,0.039069,3,2,0,2,4,0,-1,0,-1,0,-1,0,-1,17,2,0,19,8,1,0,9,8,1,0,9
+FibonacciNumbers_DefaultOrganization_20250908121632,3,CodeComplete,Programmer,Chief Technology Officer,2025-08-09 12:21:25,3,245,2,1,2,5,9,1,0,10,2843,3411,960,6254,0.037664,3,2,0,2,4,0,-1,0,-1,0,-1,0,-1,17,2,0,19,8,1,0,9,8,1,0,9
+FibonacciNumbers_DefaultOrganization_20250908121632,4,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 12:23:34,3,246,2,1,2,5,9,1,0,10,3036,3481,1024,6517,0.038605,3,2,0,2,4,0,-1,0,-1,0,-1,0,-1,17,2,0,19,8,1,0,9,8,1,0,9
+FibonacciNumbers_DefaultOrganization_20250908121632,5,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 12:25:46,3,251,2,1,2,5,9,1,0,10,3031,3471,960,6502,0.038499,3,2,0,2,4,0,-1,0,-1,0,-1,0,-1,17,2,0,19,8,1,0,9,8,1,0,9
+FibonacciNumbers_DefaultOrganization_20250908121632,6,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 12:27:57,3,251,2,1,2,5,9,1,0,10,2922,3727,1216,6649,0.040923,3,2,0,2,4,0,-1,0,-1,0,-1,0,-1,17,2,0,19,8,1,0,9,8,1,0,9
+FibonacciNumbers_DefaultOrganization_20250908121632,7,EnvironmentDoc,Programmer,Chief Technology Officer,2025-08-09 12:28:19,3,0,2,1,2,5,9,1,0,10,2852,953,896,3805,0.013095,3,2,0,2,4,0,-1,0,-1,0,-1,0,-1,17,2,0,19,8,1,0,9,8,1,0,9
+FibonacciNumbers_DefaultOrganization_20250908121632,8,Reflection,Chief Executive Officer,Counselor,2025-08-09 12:28:45,3,251,2,1,2,5,9,1,0,10,3143,1081,1024,4224,0.014739,3,2,0,2,4,0,-1,0,-1,0,-1,0,-1,17,2,0,19,8,1,0,9,8,1,0,9
+FlappyBird_DefaultOrganization_20250910134406,0,Coding,Programmer,Chief Technology Officer,2025-10-09 13:47:56,4,408,4,4,5,13,24,0,0,24,677,6786,2496,7463,0.068706,4,6,4,5,15,2,0,0,2,0,0,-1,-1,45,0,0,45,21,0,0,21,20,0,0,20
+FlappyBird_DefaultOrganization_20250910134406,1,CodeComplete,Programmer,Chief Technology Officer,2025-10-09 13:50:19,4,409,4,4,6,14,24,0,0,24,4396,4919,1024,9315,0.054685,4,6,4,5,15,2,0,0,2,0,0,-1,-1,45,0,0,45,21,0,0,21,20,0,0,20
+FlappyBird_DefaultOrganization_20250910134406,2,CodeComplete,Programmer,Chief Technology Officer,2025-10-09 13:52:17,4,409,4,4,6,14,24,0,0,24,4403,4983,1088,9386,0.055334,4,6,4,5,15,2,0,0,2,0,0,-1,-1,45,0,0,45,21,0,0,21,20,0,0,20
+FlappyBird_DefaultOrganization_20250910134406,3,CodeComplete,Programmer,Chief Technology Officer,2025-10-09 13:54:06,4,409,4,4,6,14,24,0,0,24,4399,4791,896,9190,0.053409,4,6,4,5,15,2,0,0,2,0,0,-1,-1,45,0,0,45,21,0,0,21,20,0,0,20
+FlappyBird_DefaultOrganization_20250910134406,4,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 13:57:55,4,409,4,4,6,14,24,0,0,24,4418,5175,1280,9593,0.057272,4,6,4,5,15,2,0,0,2,0,0,-1,-1,45,0,0,45,21,0,0,21,20,0,0,20
+FlappyBird_DefaultOrganization_20250910134406,5,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 14:01:20,4,417,5,4,6,15,25,0,0,25,4761,5246,1280,10007,0.058411,4,6,4,5,15,2,0,0,2,0,0,-1,-1,45,0,0,45,21,0,0,21,20,0,0,20
+FlappyBird_DefaultOrganization_20250910134406,6,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 14:05:28,4,419,6,4,6,16,25,0,0,25,4767,5585,1600,10352,0.061809,4,6,4,5,15,2,0,0,2,0,0,-1,-1,45,0,0,45,21,0,0,21,20,0,0,20
+FlappyBird_DefaultOrganization_20250910134406,7,TestModification,Programmer,Software Test Engineer,2025-10-09 14:08:06,4,454,6,4,5,15,29,0,0,29,4531,7614,3456,12145,0.081804,4,6,4,5,15,2,0,0,2,0,0,-1,-1,45,0,0,45,21,0,0,21,20,0,0,20
+GoldMiner_DefaultOrganization_20250923182344,0,Coding,Programmer,Chief Technology Officer,2025-23-09 18:26:14,3,424,8,2,4,14,35,0,0,35,697,9679,4544,10376,0.097661,3,2,2,1,5,-6,0,-3,-9,-9,0,-3,-12,28,2,0,30,-7,2,0,-5,-14,2,0,-12
+GoldMiner_DefaultOrganization_20250923182344,1,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 18:29:16,3,426,8,2,4,14,35,0,0,35,5734,7011,1920,12745,0.077277,3,2,2,1,5,-6,0,-3,-9,-9,0,-3,-12,28,2,0,30,-7,2,0,-5,-14,2,0,-12
+GoldMiner_DefaultOrganization_20250923182344,2,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 18:32:03,3,432,8,2,4,14,36,0,0,36,5823,7476,2304,13299,0.082039,3,2,2,1,5,-6,0,-3,-9,-9,0,-3,-12,28,2,0,30,-7,2,0,-5,-14,2,0,-12
+GoldMiner_DefaultOrganization_20250923182344,3,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 18:36:23,3,486,11,2,4,17,42,0,0,42,6192,9147,3520,15339,0.09921,3,2,2,1,5,-6,0,-3,-9,-9,0,-3,-12,28,2,0,30,-7,2,0,-5,-14,2,0,-12
+GoldMiner_DefaultOrganization_20250923182344,4,TestModification,Programmer,Software Test Engineer,2025-23-09 18:37:44,3,505,11,2,4,17,42,0,0,42,6167,4768,2048,10935,0.055389,3,2,2,1,5,-6,0,-3,-9,-9,0,-3,-12,28,2,0,30,-7,2,0,-5,-14,2,0,-12
+GoldMiner_DefaultOrganization_20250923182344,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-23-09 18:38:04,3,0,11,2,4,17,42,0,0,42,6298,681,640,6979,0.014683,3,2,2,1,5,-6,0,-3,-9,-9,0,-3,-12,28,2,0,30,-7,2,0,-5,-14,2,0,-12
+GoldMiner_DefaultOrganization_20250923182344,6,Reflection,Chief Executive Officer,Counselor,2025-23-09 18:38:19,3,505,11,2,4,17,42,0,0,42,6639,621,576,7260,0.014509,3,2,2,1,5,-6,0,-3,-9,-9,0,-3,-12,28,2,0,30,-7,2,0,-5,-14,2,0,-12
+Gomoku_DefaultOrganization_20250908223552,0,Coding,Programmer,Chief Technology Officer,2025-08-09 22:37:46,1,468,0,0,0,0,1,0,0,1,635,8269,3072,8904,0.083484,2,3,0,2,5,3,0,2,5,3,0,2,5,13,0,0,13,12,0,0,12,12,0,0,12
+Gomoku_DefaultOrganization_20250908223552,1,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 22:41:47,1,468,0,0,0,0,1,0,0,1,5067,7729,3136,12796,0.083624,2,3,0,2,5,3,0,2,5,3,0,2,5,13,0,0,13,12,0,0,12,12,0,0,12
+Gomoku_DefaultOrganization_20250908223552,2,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 22:44:54,1,468,0,0,0,0,1,0,0,1,5230,6321,1728,11551,0.069748,2,3,0,2,5,3,0,2,5,3,0,2,5,13,0,0,13,12,0,0,12,12,0,0,12
+Gomoku_DefaultOrganization_20250908223552,3,CodeReviewModification,Programmer,Code Reviewer,2025-08-09 22:49:04,1,468,0,0,0,0,1,0,0,1,5282,6001,1408,11283,0.066613,2,3,0,2,5,3,0,2,5,3,0,2,5,13,0,0,13,12,0,0,12,12,0,0,12
+Gomoku_DefaultOrganization_20250908223552,4,TestModification,Programmer,Software Test Engineer,2025-08-09 22:50:10,2,478,2,0,2,4,8,0,0,8,5096,3337,2112,8433,0.03974,2,3,0,2,5,3,0,2,5,3,0,2,5,13,0,0,13,12,0,0,12,12,0,0,12
+Gomoku_DefaultOrganization_20250908223552,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-08-09 22:50:29,2,0,2,0,2,4,8,0,0,8,5070,700,640,5770,0.013338,2,3,0,2,5,3,0,2,5,3,0,2,5,13,0,0,13,12,0,0,12,12,0,0,12
+Mastermind_DefaultOrganization_20250924001636,0,Coding,Programmer,Chief Technology Officer,2025-24-09 00:19:38,3,142,4,3,1,8,29,0,0,29,675,7931,2944,8606,0.080154,3,2,0,2,4,-2,-3,1,-4,-4,-1,1,-4,17,1,0,18,-12,1,0,-11,5,1,0,6
+Mastermind_DefaultOrganization_20250924001636,1,CodeReviewModification,Programmer,Code Reviewer,2025-24-09 00:21:51,3,294,3,1,1,5,10,0,0,10,3505,4242,1344,7747,0.046801,3,2,0,2,4,-2,-3,1,-4,-4,-1,1,-4,17,1,0,18,-12,1,0,-11,5,1,0,6
+Mastermind_DefaultOrganization_20250924001636,2,CodeReviewModification,Programmer,Code Reviewer,2025-24-09 00:24:04,3,300,3,1,1,5,10,0,0,10,3625,4180,1216,7805,0.046331,3,2,0,2,4,-2,-3,1,-4,-4,-1,1,-4,17,1,0,18,-12,1,0,-11,5,1,0,6
+Mastermind_DefaultOrganization_20250924001636,3,CodeReviewModification,Programmer,Code Reviewer,2025-24-09 00:25:52,3,409,6,1,1,8,12,0,0,12,3486,7447,3264,10933,0.078827,3,2,0,2,4,-2,-3,1,-4,-4,-1,1,-4,17,1,0,18,-12,1,0,-11,5,1,0,6
+Mastermind_DefaultOrganization_20250924001636,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-24-09 00:26:13,3,0,6,1,1,8,12,0,0,12,4634,883,768,5517,0.014623,3,2,0,2,4,-2,-3,1,-4,-4,-1,1,-4,17,1,0,18,-12,1,0,-11,5,1,0,6
+Mastermind_DefaultOrganization_20250924001636,5,Reflection,Chief Executive Officer,Counselor,2025-24-09 00:26:35,3,409,6,1,1,8,12,0,0,12,5038,1011,896,6049,0.016407,3,2,0,2,4,-2,-3,1,-4,-4,-1,1,-4,17,1,0,18,-12,1,0,-11,5,1,0,6
+Minesweeper_DefaultOrganization_20250913230501,0,Coding,Programmer,Chief Technology Officer,2025-13-09 23:07:33,3,418,13,5,1,19,8,0,0,8,699,6407,2048,7106,0.064944,3,4,1,1,6,-9,-4,0,-13,-9,-4,0,-13,15,0,0,15,7,0,0,7,5,0,0,5
+Minesweeper_DefaultOrganization_20250913230501,1,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 23:10:13,3,415,13,5,1,19,9,0,0,9,5166,5951,1792,11117,0.065967,3,4,1,1,6,-9,-4,0,-13,-9,-4,0,-13,15,0,0,15,7,0,0,7,5,0,0,5
+Minesweeper_DefaultOrganization_20250913230501,2,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 23:12:52,3,422,13,5,1,19,10,0,0,10,5029,4962,704,9991,0.055906,3,4,1,1,6,-9,-4,0,-13,-9,-4,0,-13,15,0,0,15,7,0,0,7,5,0,0,5
+Minesweeper_DefaultOrganization_20250913230501,3,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 23:17:42,3,429,13,5,1,19,10,0,0,10,5227,6157,1792,11384,0.068104,3,4,1,1,6,-9,-4,0,-13,-9,-4,0,-13,15,0,0,15,7,0,0,7,5,0,0,5
+Minesweeper_DefaultOrganization_20250913230501,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-13-09 23:18:00,3,0,13,5,1,19,10,0,0,10,4841,769,704,5610,0.013741,3,4,1,1,6,-9,-4,0,-13,-9,-4,0,-13,15,0,0,15,7,0,0,7,5,0,0,5
+Minesweeper_DefaultOrganization_20250913230501,5,Reflection,Chief Executive Officer,Counselor,2025-13-09 23:18:23,3,429,13,5,1,19,10,0,0,10,5207,1217,1152,6424,0.018679,3,4,1,1,6,-9,-4,0,-13,-9,-4,0,-13,15,0,0,15,7,0,0,7,5,0,0,5
+MonopolyGo_DefaultOrganization_20250918164257,0,Coding,Programmer,Chief Technology Officer,2025-18-09 16:48:33,4,738,11,7,2,20,28,1,0,29,665,12567,4288,13232,0.126501,4,3,5,2,10,-8,-2,0,-10,-10,-3,0,-13,39,3,0,42,11,2,0,13,12,2,0,14
+MonopolyGo_DefaultOrganization_20250918164257,1,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 16:54:11,4,735,11,8,2,21,28,1,0,29,8945,10238,1984,19183,0.113561,4,3,5,2,10,-8,-2,0,-10,-10,-3,0,-13,39,3,0,42,11,2,0,13,12,2,0,14
+MonopolyGo_DefaultOrganization_20250918164257,2,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 17:00:23,4,744,11,8,2,21,28,1,0,29,9242,9904,1536,19146,0.110593,4,3,5,2,10,-8,-2,0,-10,-10,-3,0,-13,39,3,0,42,11,2,0,13,12,2,0,14
+MonopolyGo_DefaultOrganization_20250918164257,3,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 17:07:57,4,813,13,8,2,23,27,1,0,28,9418,13157,4096,22575,0.143342,4,3,5,2,10,-8,-2,0,-10,-10,-3,0,-13,39,3,0,42,11,2,0,13,12,2,0,14
+MonopolyGo_DefaultOrganization_20250918164257,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-18-09 17:08:22,4,0,13,8,2,23,27,1,0,28,9487,973,896,10460,0.021589,4,3,5,2,10,-8,-2,0,-10,-10,-3,0,-13,39,3,0,42,11,2,0,13,12,2,0,14
+MonopolyGo_DefaultOrganization_20250918164257,5,Reflection,Chief Executive Officer,Counselor,2025-18-09 17:08:39,4,813,13,8,2,23,27,1,0,28,9848,653,576,10501,0.01884,4,3,5,2,10,-8,-2,0,-10,-10,-3,0,-13,39,3,0,42,11,2,0,13,12,2,0,14
+Pong_DefaultOrganization_20250914182514,0,Coding,Programmer,Chief Technology Officer,2025-14-09 18:27:35,4,486,3,4,3,10,44,0,0,44,671,7669,2496,8340,0.077529,4,3,4,3,10,0,0,0,0,3,1,2,6,44,1,0,45,0,1,0,1,20,1,0,21
+Pong_DefaultOrganization_20250914182514,1,CodeReviewModification,Programmer,Code Reviewer,2025-14-09 18:30:50,4,483,0,3,1,4,24,0,0,24,5563,5896,1280,11459,0.065914,4,3,4,3,10,0,0,0,0,3,1,2,6,44,1,0,45,0,1,0,1,20,1,0,21
+Pong_DefaultOrganization_20250914182514,2,CodeReviewModification,Programmer,Code Reviewer,2025-14-09 18:34:05,4,483,3,4,3,10,43,0,0,43,5364,6087,1472,11451,0.067575,4,3,4,3,10,0,0,0,0,3,1,2,6,44,1,0,45,0,1,0,1,20,1,0,21
+Pong_DefaultOrganization_20250914182514,3,CodeReviewModification,Programmer,Code Reviewer,2025-14-09 18:37:05,4,483,0,3,1,4,24,0,0,24,5314,5256,640,10570,0.059203,4,3,4,3,10,0,0,0,0,3,1,2,6,44,1,0,45,0,1,0,1,20,1,0,21
+Pong_DefaultOrganization_20250914182514,4,TestModification,Programmer,Software Test Engineer,2025-14-09 18:37:59,4,491,3,4,3,10,45,0,0,45,5139,4230,1856,9369,0.048724,4,3,4,3,10,0,0,0,0,3,1,2,6,44,1,0,45,0,1,0,1,20,1,0,21
+ReversiOthello_DefaultOrganization_20250917002342,0,Coding,Programmer,Chief Technology Officer,2025-17-09 00:25:10,1,390,0,0,0,0,1,0,0,1,693,7661,2624,8354,0.077476,2,4,1,1,6,4,1,1,6,4,1,1,6,16,0,0,16,15,0,0,15,15,0,0,15
+ReversiOthello_DefaultOrganization_20250917002342,1,CodeReviewModification,Programmer,Code Reviewer,2025-17-09 00:27:25,1,395,0,0,0,0,1,0,0,1,5233,5748,1344,10981,0.064021,2,4,1,1,6,4,1,1,6,4,1,1,6,16,0,0,16,15,0,0,15,15,0,0,15
+ReversiOthello_DefaultOrganization_20250917002342,2,CodeReviewModification,Programmer,Code Reviewer,2025-17-09 00:29:41,1,397,0,0,0,0,1,0,0,1,5137,5987,1600,11124,0.066291,2,4,1,1,6,4,1,1,6,4,1,1,6,16,0,0,16,15,0,0,15,15,0,0,15
+ReversiOthello_DefaultOrganization_20250917002342,3,CodeReviewModification,Programmer,Code Reviewer,2025-17-09 00:32:16,1,397,0,0,0,0,1,0,0,1,5201,6368,1984,11569,0.070181,2,4,1,1,6,4,1,1,6,4,1,1,6,16,0,0,16,15,0,0,15,15,0,0,15
+ReversiOthello_DefaultOrganization_20250917002342,4,TestModification,Programmer,Software Test Engineer,2025-17-09 00:33:17,2,397,4,1,1,6,8,0,0,8,4918,3712,1344,8630,0.043268,2,4,1,1,6,4,1,1,6,4,1,1,6,16,0,0,16,15,0,0,15,15,0,0,15
+SnakeGame_DefaultOrganization_20250910123142,0,Coding,Programmer,Chief Technology Officer,2025-10-09 12:35:18,6,452,4,6,3,13,25,1,0,26,687,6563,2176,7250,0.066489,6,5,5,3,13,1,-1,0,0,-1,-1,-1,-3,59,2,0,61,34,1,0,35,30,1,0,31
+SnakeGame_DefaultOrganization_20250910123142,1,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 12:40:42,6,458,5,6,3,14,26,1,0,27,4726,5173,1216,9899,0.057638,6,5,5,3,13,1,-1,0,0,-1,-1,-1,-3,59,2,0,61,34,1,0,35,30,1,0,31
+SnakeGame_DefaultOrganization_20250910123142,2,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 12:45:21,6,466,5,6,3,14,26,1,0,27,4820,5189,1152,10009,0.057915,6,5,5,3,13,1,-1,0,0,-1,-1,-1,-3,59,2,0,61,34,1,0,35,30,1,0,31
+SnakeGame_DefaultOrganization_20250910123142,3,CodeReviewModification,Programmer,Code Reviewer,2025-10-09 12:50:06,6,497,6,6,4,16,29,1,0,30,4571,7212,2688,11783,0.077834,6,5,5,3,13,1,-1,0,0,-1,-1,-1,-3,59,2,0,61,34,1,0,35,30,1,0,31
+SnakeGame_DefaultOrganization_20250910123142,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-10-09 12:51:33,6,0,6,6,4,16,29,1,0,30,4988,599,576,5587,0.012225,6,5,5,3,13,1,-1,0,0,-1,-1,-1,-3,59,2,0,61,34,1,0,35,30,1,0,31
+SnakeGame_DefaultOrganization_20250910123142,5,Reflection,Chief Executive Officer,Counselor,2025-10-09 12:51:56,6,497,6,6,4,16,29,1,0,30,5306,663,640,5969,0.013262,6,5,5,3,13,1,-1,0,0,-1,-1,-1,-3,59,2,0,61,34,1,0,35,30,1,0,31
+StrandsGame_DefaultOrganization_20250918115617,0,Coding,Programmer,Chief Technology Officer,2025-18-09 11:59:44,2,483,3,7,3,13,46,1,0,47,655,12456,3840,13111,0.125379,2,1,3,1,5,-2,-4,-2,-8,-2,-4,-2,-8,17,0,0,17,-29,-1,0,-30,-29,-1,0,-30
+StrandsGame_DefaultOrganization_20250918115617,1,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 12:04:57,2,491,3,7,3,13,46,1,0,47,9311,10573,1984,19884,0.117369,2,1,3,1,5,-2,-4,-2,-8,-2,-4,-2,-8,17,0,0,17,-29,-1,0,-30,-29,-1,0,-30
+StrandsGame_DefaultOrganization_20250918115617,2,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 12:11:18,2,491,3,7,3,13,46,1,0,47,9448,10920,2240,20368,0.12101,2,1,3,1,5,-2,-4,-2,-8,-2,-4,-2,-8,17,0,0,17,-29,-1,0,-30,-29,-1,0,-30
+StrandsGame_DefaultOrganization_20250918115617,3,CodeReviewModification,Programmer,Code Reviewer,2025-18-09 12:18:29,2,490,3,7,3,13,46,1,0,47,9415,12089,3456,21504,0.132659,2,1,3,1,5,-2,-4,-2,-8,-2,-4,-2,-8,17,0,0,17,-29,-1,0,-30,-29,-1,0,-30
+StrandsGame_DefaultOrganization_20250918115617,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-18-09 12:19:15,2,0,3,7,3,13,46,1,0,47,9058,1317,1280,10375,0.024493,2,1,3,1,5,-2,-4,-2,-8,-2,-4,-2,-8,17,0,0,17,-29,-1,0,-30,-29,-1,0,-30
+StrandsGame_DefaultOrganization_20250918115617,5,Reflection,Chief Executive Officer,Counselor,2025-18-09 12:19:34,2,490,3,7,3,13,46,1,0,47,9374,741,704,10115,0.019127,2,1,3,1,5,-2,-4,-2,-8,-2,-4,-2,-8,17,0,0,17,-29,-1,0,-30,-29,-1,0,-30
+StrandsNYT_DefaultOrganization_20250915172200,0,Coding,Programmer,Chief Technology Officer,2025-15-09 17:26:04,1,472,0,0,0,0,1,0,0,1,849,17789,11264,18638,0.178951,6,8,11,8,27,8,11,8,27,-1,3,4,6,94,0,0,94,93,0,0,93,45,-1,0,44
+StrandsNYT_DefaultOrganization_20250915172200,1,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:29:00,5,474,9,2,1,12,46,1,0,47,7068,7574,1536,14642,0.084575,6,8,11,8,27,8,11,8,27,-1,3,4,6,94,0,0,94,93,0,0,93,45,-1,0,44
+StrandsNYT_DefaultOrganization_20250915172200,2,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:31:43,6,565,9,5,2,16,48,1,0,49,7332,11073,3136,18405,0.119895,6,8,11,8,27,8,11,8,27,-1,3,4,6,94,0,0,94,93,0,0,93,45,-1,0,44
+StrandsNYT_DefaultOrganization_20250915172200,3,CodeReviewModification,Programmer,Code Reviewer,2025-15-09 17:37:23,6,565,9,8,4,21,49,1,0,50,11084,12875,2624,23959,0.142605,6,8,11,8,27,8,11,8,27,-1,3,4,6,94,0,0,94,93,0,0,93,45,-1,0,44
+StrandsNYT_DefaultOrganization_20250915172200,4,TestModification,Programmer,Software Test Engineer,2025-15-09 17:38:18,6,571,9,8,7,24,50,1,0,51,10844,1849,832,12693,0.032045,6,8,11,8,27,8,11,8,27,-1,3,4,6,94,0,0,94,93,0,0,93,45,-1,0,44
+StrandsNYT_DefaultOrganization_20250915172200,5,TestModification,Programmer,Software Test Engineer,2025-15-09 17:40:39,6,580,9,8,7,24,51,1,0,52,10993,4875,1344,15868,0.062491,6,8,11,8,27,8,11,8,27,-1,3,4,6,94,0,0,94,93,0,0,93,45,-1,0,44
+StrandsNYT_DefaultOrganization_20250915172200,6,Reflection,Chief Executive Officer,Counselor,2025-15-09 17:41:20,6,580,9,8,7,24,51,1,0,52,11379,794,768,12173,0.022164,6,8,11,8,27,8,11,8,27,-1,3,4,6,94,0,0,94,93,0,0,93,45,-1,0,44
+Sudoku_DefaultOrganization_20250912104519,0,Coding,Programmer,Chief Technology Officer,2025-12-09 10:48:51,2,362,7,4,2,13,139,0,0,139,667,11030,3008,11697,0.111134,3,0,2,3,5,-7,-2,1,-8,-7,-3,-1,-11,36,0,0,36,-103,0,0,-103,-117,0,0,-117
+Sudoku_DefaultOrganization_20250912104519,1,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 10:52:53,3,362,7,5,4,16,153,0,0,153,8242,9967,2560,18209,0.109973,3,0,2,3,5,-7,-2,1,-8,-7,-3,-1,-11,36,0,0,36,-103,0,0,-103,-117,0,0,-117
+Sudoku_DefaultOrganization_20250912104519,2,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 10:57:11,3,362,7,5,4,16,153,0,0,153,8283,10322,2880,18605,0.113574,3,0,2,3,5,-7,-2,1,-8,-7,-3,-1,-11,36,0,0,36,-103,0,0,-103,-117,0,0,-117
+Sudoku_DefaultOrganization_20250912104519,3,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 11:01:12,3,362,7,5,4,16,153,0,0,153,8302,10386,2944,18688,0.114237,3,0,2,3,5,-7,-2,1,-8,-7,-3,-1,-11,36,0,0,36,-103,0,0,-103,-117,0,0,-117
+Sudoku_DefaultOrganization_20250912104519,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-12-09 11:01:42,3,0,7,5,4,16,153,0,0,153,7884,728,704,8612,0.017135,3,0,2,3,5,-7,-2,1,-8,-7,-3,-1,-11,36,0,0,36,-103,0,0,-103,-117,0,0,-117
+Sudoku_DefaultOrganization_20250912104519,5,Reflection,Chief Executive Officer,Counselor,2025-12-09 11:02:08,3,362,7,5,4,16,153,0,0,153,8193,984,960,9177,0.020081,3,0,2,3,5,-7,-2,1,-8,-7,-3,-1,-11,36,0,0,36,-103,0,0,-103,-117,0,0,-117
+Tetris_DefaultOrganization_20250916220733,0,Coding,Programmer,Chief Technology Officer,2025-16-09 22:33:37,0,0,0,0,0,0,0,0,0,0,691,11790,2176,12481,0.118764,,,,,,,,,,,,,,,,,,,,,,,,,
+Tetris_DefaultOrganization_20250916220733,1,CodeReviewModification,Programmer,Code Reviewer,2025-16-09 22:38:53,0,0,0,0,0,0,0,0,0,0,9820,10927,1792,20747,0.121545,,,,,,,,,,,,,,,,,,,,,,,,,
+Tetris_DefaultOrganization_20250916220733,2,CodeReviewModification,Programmer,Code Reviewer,2025-16-09 22:41:29,0,0,0,0,0,0,0,0,0,0,10066,10543,1408,20609,0.118013,,,,,,,,,,,,,,,,,,,,,,,,,
+Tetris_DefaultOrganization_20250916220733,3,CodeReviewModification,Programmer,Code Reviewer,2025-16-09 22:46:13,0,0,0,0,0,0,0,0,0,0,10300,10405,1280,20705,0.116925,,,,,,,,,,,,,,,,,,,,,,,,,
+TextBasedSpaceInvaders_DefaultOrganization_20250923235402,0,Coding,Programmer,Chief Technology Officer,2025-23-09 23:56:33,4,389,6,4,3,13,25,0,0,25,663,7882,3136,8545,0.079649,4,3,4,3,10,-3,0,0,-3,-2,-1,0,-3,46,2,0,48,21,2,0,23,26,2,0,28
+TextBasedSpaceInvaders_DefaultOrganization_20250923235402,1,CodeReviewModification,Programmer,Code Reviewer,2025-23-09 23:59:05,4,389,6,4,3,13,24,0,0,24,4685,5043,1024,9728,0.056286,4,3,4,3,10,-3,0,0,-3,-2,-1,0,-3,46,2,0,48,21,2,0,23,26,2,0,28
+TextBasedSpaceInvaders_DefaultOrganization_20250923235402,2,CodeReviewModification,Programmer,Code Reviewer,2025-24-09 00:01:44,4,388,6,4,3,13,24,0,0,24,4712,4706,704,9418,0.05295,4,3,4,3,10,-3,0,0,-3,-2,-1,0,-3,46,2,0,48,21,2,0,23,26,2,0,28
+TextBasedSpaceInvaders_DefaultOrganization_20250923235402,3,CodeReviewModification,Programmer,Code Reviewer,2025-24-09 00:04:10,4,392,5,5,3,13,20,0,0,20,4915,7050,3008,11965,0.076644,4,3,4,3,10,-3,0,0,-3,-2,-1,0,-3,46,2,0,48,21,2,0,23,26,2,0,28
+TextBasedSpaceInvaders_DefaultOrganization_20250923235402,4,TestModification,Programmer,Software Test Engineer,2025-24-09 00:04:50,4,403,5,5,3,13,21,0,0,21,4562,1837,1664,6399,0.024073,4,3,4,3,10,-3,0,0,-3,-2,-1,0,-3,46,2,0,48,21,2,0,23,26,2,0,28
+TextBasedSpaceInvaders_DefaultOrganization_20250923235402,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-24-09 00:05:04,4,0,5,5,3,13,21,0,0,21,4566,600,576,5166,0.011708,4,3,4,3,10,-3,0,0,-3,-2,-1,0,-3,46,2,0,48,21,2,0,23,26,2,0,28
+TextBasedSpaceInvaders_DefaultOrganization_20250923235402,6,Reflection,Chief Executive Officer,Counselor,2025-24-09 00:05:20,4,403,5,5,3,13,21,0,0,21,4873,728,704,5601,0.013371,4,3,4,3,10,-3,0,0,-3,-2,-1,0,-3,46,2,0,48,21,2,0,23,26,2,0,28
+TheCrossword_DefaultOrganization_20250912175428,0,Coding,Programmer,Chief Technology Officer,2025-12-09 17:58:20,5,522,12,4,4,20,15,0,0,15,635,13873,8832,14508,0.139524,5,1,1,4,6,-11,-3,0,-14,-14,-6,0,-20,15,1,0,16,0,1,0,1,-9,1,0,-8
+TheCrossword_DefaultOrganization_20250912175428,1,CodeComplete,Programmer,Chief Technology Officer,2025-12-09 18:00:33,5,522,12,4,4,20,15,0,0,15,5511,6832,1792,12343,0.075209,5,1,1,4,6,-11,-3,0,-14,-14,-6,0,-20,15,1,0,16,0,1,0,1,-9,1,0,-8
+TheCrossword_DefaultOrganization_20250912175428,2,CodeComplete,Programmer,Chief Technology Officer,2025-12-09 18:02:45,5,524,12,4,4,20,15,0,0,15,5511,6595,1536,12106,0.072839,5,1,1,4,6,-11,-3,0,-14,-14,-6,0,-20,15,1,0,16,0,1,0,1,-9,1,0,-8
+TheCrossword_DefaultOrganization_20250912175428,3,CodeComplete,Programmer,Chief Technology Officer,2025-12-09 18:05:06,5,524,12,4,4,20,15,0,0,15,5528,6018,960,11546,0.06709,5,1,1,4,6,-11,-3,0,-14,-14,-6,0,-20,15,1,0,16,0,1,0,1,-9,1,0,-8
+TheCrossword_DefaultOrganization_20250912175428,4,CodeComplete,Programmer,Chief Technology Officer,2025-12-09 18:07:05,5,524,12,4,4,20,15,0,0,15,5528,7041,1984,12569,0.07732,5,1,1,4,6,-11,-3,0,-14,-14,-6,0,-20,15,1,0,16,0,1,0,1,-9,1,0,-8
+TheCrossword_DefaultOrganization_20250912175428,5,CodeComplete,Programmer,Chief Technology Officer,2025-12-09 18:09:14,5,524,12,4,4,20,15,0,0,15,5528,6850,1792,12378,0.07541,5,1,1,4,6,-11,-3,0,-14,-14,-6,0,-20,15,1,0,16,0,1,0,1,-9,1,0,-8
+TheCrossword_DefaultOrganization_20250912175428,6,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 18:14:01,5,573,13,6,4,23,24,0,0,24,6011,7107,1408,13118,0.078584,5,1,1,4,6,-11,-3,0,-14,-14,-6,0,-20,15,1,0,16,0,1,0,1,-9,1,0,-8
+TheCrossword_DefaultOrganization_20250912175428,7,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 18:17:19,5,575,13,6,4,23,24,0,0,24,6180,8134,2432,14314,0.089065,5,1,1,4,6,-11,-3,0,-14,-14,-6,0,-20,15,1,0,16,0,1,0,1,-9,1,0,-8
+TheCrossword_DefaultOrganization_20250912175428,8,CodeReviewModification,Programmer,Code Reviewer,2025-12-09 18:20:50,5,601,15,7,4,26,24,0,0,24,6563,7325,1344,13888,0.081454,5,1,1,4,6,-11,-3,0,-14,-14,-6,0,-20,15,1,0,16,0,1,0,1,-9,1,0,-8
+TheCrossword_DefaultOrganization_20250912175428,9,EnvironmentDoc,Programmer,Chief Technology Officer,2025-12-09 18:21:12,5,0,15,7,4,26,24,0,0,24,6392,853,768,7245,0.01652,5,1,1,4,6,-11,-3,0,-14,-14,-6,0,-20,15,1,0,16,0,1,0,1,-9,1,0,-8
+TicTacToe_DefaultOrganization_20250913084721,0,Coding,Programmer,Chief Technology Officer,2025-13-09 08:48:15,4,307,5,2,2,9,10,0,0,10,659,6101,2752,6760,0.061834,4,4,4,2,10,-1,2,0,1,-2,2,0,0,27,2,0,29,17,2,0,19,14,2,0,16
+TicTacToe_DefaultOrganization_20250913084721,1,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 08:50:04,4,307,5,2,2,9,10,0,0,10,3515,4545,1536,8060,0.049844,4,4,4,2,10,-1,2,0,1,-2,2,0,0,27,2,0,29,17,2,0,19,14,2,0,16
+TicTacToe_DefaultOrganization_20250913084721,2,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 08:52:03,4,307,5,2,2,9,10,0,0,10,3515,4545,1536,8060,0.049844,4,4,4,2,10,-1,2,0,1,-2,2,0,0,27,2,0,29,17,2,0,19,14,2,0,16
+TicTacToe_DefaultOrganization_20250913084721,3,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 08:55:09,4,361,6,2,2,10,13,0,0,13,3515,7197,3584,10712,0.076364,4,4,4,2,10,-1,2,0,1,-2,2,0,0,27,2,0,29,17,2,0,19,14,2,0,16
+Tiny Rouge_DefaultOrganization_20250913090722,0,Coding,Programmer,Chief Technology Officer,2025-13-09 09:09:08,6,519,9,5,5,19,44,1,0,45,827,9575,3648,10402,0.096784,6,7,3,5,15,-2,-2,0,-4,6,-2,1,5,28,5,0,33,-16,4,0,-12,-14,4,0,-10
+Tiny Rouge_DefaultOrganization_20250913090722,1,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 09:12:16,6,518,9,6,5,20,44,1,0,45,6459,6896,1600,13355,0.077034,6,7,3,5,15,-2,-2,0,-4,6,-2,1,5,28,5,0,33,-16,4,0,-12,-14,4,0,-10
+Tiny Rouge_DefaultOrganization_20250913090722,2,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 09:15:56,6,526,9,6,5,20,47,1,0,48,6333,6915,1472,13248,0.077066,6,7,3,5,15,-2,-2,0,-4,6,-2,1,5,28,5,0,33,-16,4,0,-12,-14,4,0,-10
+Tiny Rouge_DefaultOrganization_20250913090722,3,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 09:19:48,6,528,1,5,4,10,42,1,0,43,6515,6723,1216,13238,0.075374,6,7,3,5,15,-2,-2,0,-4,6,-2,1,5,28,5,0,33,-16,4,0,-12,-14,4,0,-10
+TriviaQuiz_DefaultOrganization_20250913115336,0,Coding,Programmer,Chief Technology Officer,2025-13-09 11:55:04,4,698,14,7,3,24,15,1,0,16,653,9852,2880,10505,0.099336,4,8,4,4,16,-6,-3,1,-8,-9,-3,1,-11,55,1,0,56,40,0,0,40,38,0,0,38
+TriviaQuiz_DefaultOrganization_20250913115336,1,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 11:58:09,4,777,18,7,3,28,17,3,0,20,7550,8739,1536,16289,0.096827,4,8,4,4,16,-6,-3,1,-8,-9,-3,1,-11,55,1,0,56,40,0,0,40,38,0,0,38
+TriviaQuiz_DefaultOrganization_20250913115336,2,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 12:02:18,4,778,18,7,3,28,17,3,0,20,7984,9508,2304,17492,0.10506,4,8,4,4,16,-6,-3,1,-8,-9,-3,1,-11,55,1,0,56,40,0,0,40,38,0,0,38
+TriviaQuiz_DefaultOrganization_20250913115336,3,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 12:05:14,4,784,17,7,3,27,17,1,0,18,8065,8741,1472,16806,0.097491,4,8,4,4,16,-6,-3,1,-8,-9,-3,1,-11,55,1,0,56,40,0,0,40,38,0,0,38
+TriviaQuiz_DefaultOrganization_20250913115336,4,TestModification,Programmer,Software Test Engineer,2025-13-09 12:07:33,4,784,17,7,3,27,17,1,0,18,8060,4865,832,12925,0.058725,4,8,4,4,16,-6,-3,1,-8,-9,-3,1,-11,55,1,0,56,40,0,0,40,38,0,0,38
+TriviaQuiz_DefaultOrganization_20250913115336,5,EnvironmentDoc,Programmer,Chief Technology Officer,2025-13-09 12:08:01,4,0,17,7,3,27,17,1,0,18,7698,904,832,8602,0.018663,4,8,4,4,16,-6,-3,1,-8,-9,-3,1,-11,55,1,0,56,40,0,0,40,38,0,0,38
+TriviaQuiz_DefaultOrganization_20250913115336,6,Reflection,Chief Executive Officer,Counselor,2025-13-09 12:08:20,4,784,17,7,3,27,17,1,0,18,8048,1011,960,9059,0.02017,4,8,4,4,16,-6,-3,1,-8,-9,-3,1,-11,55,1,0,56,40,0,0,40,38,0,0,38
+Wordle_DefaultOrganization_20250913205401,0,Coding,Programmer,Chief Technology Officer,2025-13-09 20:58:07,5,443,4,6,2,12,19,0,0,19,813,8480,3264,9293,0.085816,5,4,4,3,11,0,-2,1,-1,-1,-2,1,-2,44,1,0,45,25,1,0,26,21,1,0,22
+Wordle_DefaultOrganization_20250913205401,1,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 21:05:05,5,462,4,6,2,12,22,0,0,22,5563,6499,1664,12062,0.071944,5,4,4,3,11,0,-2,1,-1,-1,-2,1,-2,44,1,0,45,25,1,0,26,21,1,0,22
+Wordle_DefaultOrganization_20250913205401,2,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 21:13:01,5,463,4,6,2,12,22,0,0,22,5492,7550,2688,13042,0.082365,5,4,4,3,11,0,-2,1,-1,-1,-2,1,-2,44,1,0,45,25,1,0,26,21,1,0,22
+Wordle_DefaultOrganization_20250913205401,3,CodeReviewModification,Programmer,Code Reviewer,2025-13-09 21:18:13,5,486,5,6,2,13,23,0,0,23,5910,7400,2048,13310,0.081388,5,4,4,3,11,0,-2,1,-1,-1,-2,1,-2,44,1,0,45,25,1,0,26,21,1,0,22
+Wordle_DefaultOrganization_20250913205401,4,EnvironmentDoc,Programmer,Chief Technology Officer,2025-13-09 21:18:29,5,0,5,6,2,13,23,0,0,23,5939,514,448,6453,0.012564,5,4,4,3,11,0,-2,1,-1,-1,-2,1,-2,44,1,0,45,25,1,0,26,21,1,0,22
+Wordle_DefaultOrganization_20250913205401,5,Reflection,Chief Executive Officer,Counselor,2025-13-09 21:18:51,5,486,5,6,2,13,23,0,0,23,6363,835,768,7198,0.016304,5,4,4,3,11,0,-2,1,-1,-1,-2,1,-2,44,1,0,45,25,1,0,26,21,1,0,22
